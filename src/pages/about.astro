@@ -1,0 +1,86 @@
+---
+/**
+ * About page — club history, values and squads.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { SITE } from '../consts';
+---
+
+<BaseLayout
+  title="About"
+  description={`Founded in ${SITE.founded}, ${SITE.name} is one of London's oldest rowing clubs. Learn about our history, values and squads.`}
+>
+  <!-- Page header -->
+  <section class="bg-river-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        align="left"
+        eyebrow="About us"
+        title="One hundred and thirty years of blades on the Tideway"
+        intro="A volunteer-run club with a simple belief: rowing should be open to everyone."
+      />
+    </div>
+  </section>
+
+  <!-- History -->
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <h2 class="font-display text-2xl font-bold text-river-950">Our story</h2>
+    <div class="mt-5 space-y-4 leading-relaxed text-slate-700">
+      <p>
+        {SITE.name} was founded in {SITE.founded} by a group of watermen who
+        wanted a club that welcomed working crews, not just gentlemen amateurs.
+        The first boathouse was a converted barge moored by the embankment; the
+        first eight was built of cedar and christened with river water.
+      </p>
+      <p>
+        Through two world wars the club kept boating — sometimes with scratch
+        crews of veterans and schoolboys — and in 1974 we became one of the
+        first Tideway clubs to open every squad to women. That decision shaped
+        who we are: competitive, yes, but community first.
+      </p>
+      <p>
+        Today our 260 members row from a modern boathouse on the same stretch
+        of river. We field juniors, seniors and masters at regattas nationwide,
+        and our learn-to-row programme introduces over a hundred beginners to
+        the sport every year.
+      </p>
+    </div>
+  </section>
+
+  <!-- Squads -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-river-950">Our squads</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="font-display text-lg font-bold text-river-800">Juniors (11–18)</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            Three coached sessions a week with a clear pathway from novice to
+            national schools' regattas. All coaches are DBS-checked.
+          </p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="font-display text-lg font-bold text-river-800">Seniors</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            Performance and club squads training up to six times a week, with
+            erg testing, video analysis and a full racing calendar.
+          </p>
+        </div>
+        <div class="rounded-xl border border-slate-200 p-6">
+          <h3 class="font-display text-lg font-bold text-river-800">Masters & Recreational</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            Racing crews from 27 to 80+, plus a thriving recreational group who
+            row for fitness, friendship and the occasional pub stop.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Come and see the boathouse"
+    text="Drop by any Saturday morning — the coffee is always on and there's usually a crew heading out."
+  />
+</BaseLayout>

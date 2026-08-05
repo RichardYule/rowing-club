@@ -1,0 +1,74 @@
+---
+/**
+ * SEO component — renders all meta tags for search engines and
+ * social sharing. Used once per page inside BaseLayout.
+ *
+ * - Canonical URL derived from Astro.site + current path
+ * - Open Graph + Twitter Card tags
+ * - JSON-LD structured data (SportsClub schema) for rich results
+ */
+import { SITE } from '../consts';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Path to a share image, e.g. '/images/og-image.svg' */
+  image?: string;
+  /** Set false for pages that should not be indexed (e.g. 404). */
+  index?: boolean;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image = '/images/og-image.svg',
+  index = true,
+} = Astro.props;
+
+const pageTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = new URL(image, Astro.site);
+
+// Structured data so Google understands this is a sports club.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsClub',
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  email: SITE.email,
+  telephone: SITE.phone,
+  foundingDate: String(SITE.founded),
+  sport: 'Rowing',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    postalCode: SITE.address.postcode,
+    addressCountry: SITE.address.country,
+  },
+};
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{!index && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp…) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={SITE.name} />
+<meta property="og:locale" content={SITE.locale} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:image" content={imageURL} />
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageURL} />
+
+<!-- Structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

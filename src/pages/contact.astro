@@ -1,0 +1,201 @@
+---
+/**
+ * Contact page — enquiry form (wired for Cloudflare Pages Functions,
+ * with a graceful mailto fallback) plus visit information.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { SITE } from '../consts';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Contact Tideway Rowing Club to book a free taster session, ask about membership, or arrange a visit to the boathouse."
+>
+  <section class="bg-river-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Contact"
+        title="Say hello"
+        intro="Questions about membership, taster sessions or hiring the clubhouse? We reply within two working days."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <div class="grid gap-12 lg:grid-cols-5">
+      <!-- Enquiry form (progressive enhancement: mails fall back to mailto) -->
+      <div class="lg:col-span-3">
+        <h2 class="font-display text-xl font-bold text-river-950">
+          Send us a message
+        </h2>
+        <form
+          id="contact-form"
+          class="mt-6 space-y-5"
+          method="post"
+          action={`mailto:${SITE.email}`}
+          enctype="text/plain"
+          novalidate
+        >
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="name" class="block text-sm font-semibold text-slate-700">
+                Name <span aria-hidden="true" class="text-rose-600">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                autocomplete="name"
+                class="mt-1.5 w-full rounded-md border border-slate-300 px-3.5 py-2.5 text-sm shadow-sm focus:border-river-500 focus:ring-2 focus:ring-river-200 focus:outline-none"
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-semibold text-slate-700">
+                Email <span aria-hidden="true" class="text-rose-600">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                autocomplete="email"
+                class="mt-1.5 w-full rounded-md border border-slate-300 px-3.5 py-2.5 text-sm shadow-sm focus:border-river-500 focus:ring-2 focus:ring-river-200 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="topic" class="block text-sm font-semibold text-slate-700">
+              I'm interested in
+            </label>
+            <select
+              id="topic"
+              name="topic"
+              class="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3.5 py-2.5 text-sm shadow-sm focus:border-river-500 focus:ring-2 focus:ring-river-200 focus:outline-none"
+            >
+              <option>Learn to Row course</option>
+              <option>Full membership</option>
+              <option>Junior membership</option>
+              <option>Clubhouse hire</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-semibold text-slate-700">
+              Message <span aria-hidden="true" class="text-rose-600">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              required
+              class="mt-1.5 w-full rounded-md border border-slate-300 px-3.5 py-2.5 text-sm shadow-sm focus:border-river-500 focus:ring-2 focus:ring-river-200 focus:outline-none"
+            ></textarea>
+          </div>
+
+          <p id="form-status" class="hidden text-sm font-medium" role="status"></p>
+
+          <button
+            type="submit"
+            class="rounded-md bg-river-700 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-river-800"
+          >
+            Send message
+          </button>
+        </form>
+
+        <script>
+          // Progressive enhancement: intercept submit for basic validation
+          // feedback. To handle submissions server-side on Cloudflare Pages,
+          // point the form action at a Pages Function (e.g. /api/contact).
+          const form = document.getElementById('contact-form') as HTMLFormElement | null;
+          const status = document.getElementById('form-status');
+
+          form?.addEventListener('submit', (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              if (status) {
+                status.textContent = 'Please fill in the required fields.';
+                status.className = 'text-sm font-medium text-rose-600';
+              }
+              form.reportValidity();
+            } else if (status) {
+              status.textContent = 'Opening your email client…';
+              status.className = 'text-sm font-medium text-river-700';
+            }
+          });
+        </script>
+      </div>
+
+      <!-- Visit info -->
+      <aside class="lg:col-span-2">
+        <h2 class="font-display text-xl font-bold text-river-950">Visit us</h2>
+        <dl class="mt-6 space-y-5 text-sm">
+          <div>
+            <dt class="font-semibold text-slate-700">Boathouse</dt>
+            <dd class="mt-1 leading-relaxed text-slate-600">
+              {SITE.address.street}<br />
+              {SITE.address.city}, {SITE.address.postcode}
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-slate-700">Email</dt>
+            <dd class="mt-1">
+              <a
+                href={`mailto:${SITE.email}`}
+                class="text-river-700 underline-offset-4 hover:underline"
+              >
+                {SITE.email}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-slate-700">Phone</dt>
+            <dd class="mt-1">
+              <a
+                href={`tel:${SITE.phone.replace(/\s/g, '')}`}
+                class="text-river-700 underline-offset-4 hover:underline"
+              >
+                {SITE.phone}
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt class="font-semibold text-slate-700">Best time to visit</dt>
+            <dd class="mt-1 leading-relaxed text-slate-600">
+              Saturday mornings 8:00–12:00, when most squads are on the water
+              and the clubhouse kitchen is open.
+            </dd>
+          </div>
+        </dl>
+
+        <!-- Stylised map placeholder -->
+        <div
+          class="mt-8 flex h-52 items-center justify-center rounded-xl bg-river-900 text-river-200"
+          role="img"
+          aria-label="Stylised map showing the boathouse on the river"
+        >
+          <svg class="h-full w-full" viewBox="0 0 400 200" aria-hidden="true">
+            <rect width="400" height="200" class="fill-river-900"></rect>
+            <path
+              d="M0 120c60-25 120-25 180 0s120 25 220-10v90H0z"
+              class="fill-river-700"></path>
+            <path
+              d="M0 135c60-20 120-20 180 0s120 20 220-8"
+              fill="none"
+              class="stroke-river-300"
+              stroke-width="2"
+              stroke-dasharray="6 6"></path>
+            <circle cx="200" cy="95" r="9" class="fill-blade-400"></circle>
+            <circle cx="200" cy="95" r="16" class="fill-blade-400/30"></circle>
+            <text x="200" y="70" text-anchor="middle" class="fill-white text-[13px] font-semibold">
+              Tideway Boathouse
+            </text>
+          </svg>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

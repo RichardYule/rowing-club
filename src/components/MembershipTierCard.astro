@@ -1,0 +1,83 @@
+---
+/**
+ * MembershipTierCard — pricing card for one membership tier.
+ * The featured tier is visually emphasised with a dark panel.
+ */
+import type { MembershipTier } from '../data/membership';
+
+interface Props {
+  tier: MembershipTier;
+}
+
+const { tier } = Astro.props;
+---
+
+<div
+  class:list={[
+    'relative flex flex-col rounded-2xl p-8',
+    tier.featured
+      ? 'bg-river-900 text-white shadow-xl ring-4 ring-blade-400/60'
+      : 'border border-slate-200 bg-white shadow-sm',
+  ]}
+>
+  {
+    tier.featured && (
+      <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blade-400 px-4 py-1 text-xs font-bold uppercase tracking-wider text-river-950">
+        Most popular
+      </span>
+    )
+  }
+
+  <h3
+    class:list={[
+      'font-display text-xl font-bold',
+      tier.featured ? 'text-white' : 'text-river-950',
+    ]}
+  >
+    {tier.name}
+  </h3>
+  <p class:list={['mt-1 text-sm', tier.featured ? 'text-river-200' : 'text-slate-500']}>
+    {tier.blurb}
+  </p>
+
+  <p class="mt-5">
+    <span class="font-display text-4xl font-extrabold">{tier.price}</span>
+  </p>
+
+  <ul class="mt-6 flex-1 space-y-3">
+    {
+      tier.features.map((feature) => (
+        <li class="flex items-start gap-2.5 text-sm">
+          <svg
+            class:list={[
+              'mt-0.5 h-4 w-4 shrink-0',
+              tier.featured ? 'text-blade-400' : 'text-river-600',
+            ]}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+          </svg>
+          <span class={tier.featured ? 'text-river-100' : 'text-slate-600'}>
+            {feature}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <a
+    href="/contact"
+    class:list={[
+      'mt-8 rounded-md px-5 py-2.5 text-center text-sm font-bold transition-colors',
+      tier.featured
+        ? 'bg-blade-400 text-river-950 hover:bg-blade-300'
+        : 'bg-river-700 text-white hover:bg-river-800',
+    ]}
+  >
+    Enquire now
+  </a>
+</div>

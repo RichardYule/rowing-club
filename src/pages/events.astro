@@ -1,0 +1,49 @@
+---
+/**
+ * Events page — full club calendar rendered from typed data,
+ * sorted chronologically.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import EventCard from '../components/EventCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { events } from '../data/events';
+
+const sortedEvents = [...events].sort((a, b) => a.date.localeCompare(b.date));
+---
+
+<BaseLayout
+  title="Events"
+  description="Regattas, training camps, courses and socials at Tideway Rowing Club. See what's coming up and how to take part."
+>
+  <section class="bg-river-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Calendar"
+        title="Club events"
+        intro="Everything from head races on the championship course to ceilidhs in the clubhouse bar."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6" aria-label="Upcoming club events">
+    <div class="grid gap-5">
+      {sortedEvents.map((event) => <EventCard event={event} />)}
+    </div>
+    <p class="mt-10 rounded-lg bg-river-50 p-5 text-sm text-slate-600">
+      <strong class="text-river-800">Taking part:</strong> members can sign up
+      for any event via the club app. Non-members are welcome at social events
+      and can register for learn-to-row courses directly — just
+      <a href="/contact" class="font-semibold text-river-700 underline-offset-4 hover:underline">
+        get in touch</a
+      >.
+    </p>
+  </section>
+
+  <CTABanner
+    heading="Want to race with us?"
+    text="New members are welcome in every squad. Join before our next head race and you could be on the start line this season."
+    buttonLabel="Join the club"
+    buttonHref="/membership"
+  />
+</BaseLayout>

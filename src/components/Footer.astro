@@ -1,0 +1,84 @@
+---
+/**
+ * Footer — contact details, quick links, socials and legal line.
+ * Rendered on every page by BaseLayout.
+ */
+import { SITE, NAV_LINKS } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-river-950 text-river-100">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3">
+    <!-- Club identity -->
+    <div>
+      <p class="font-display text-xl font-bold text-white">{SITE.name}</p>
+      <p class="mt-2 text-sm text-river-300">{SITE.tagline}</p>
+      <address class="mt-4 text-sm not-italic leading-relaxed text-river-200">
+        {SITE.address.street}<br />
+        {SITE.address.city}, {SITE.address.postcode}<br />
+        {SITE.address.country}
+      </address>
+    </div>
+
+    <!-- Quick links -->
+    <nav aria-label="Footer navigation">
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-river-300">
+        Explore
+      </h2>
+      <ul class="mt-3 space-y-2">
+        {
+          NAV_LINKS.map((link) => (
+            <li>
+              <a href={link.href} class="text-sm text-river-100 transition-colors hover:text-white">
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Contact + social -->
+    <div>
+      <h2 class="text-sm font-semibold uppercase tracking-wider text-river-300">
+        Get in touch
+      </h2>
+      <ul class="mt-3 space-y-2 text-sm">
+        <li>
+          <a href={`mailto:${SITE.email}`} class="transition-colors hover:text-white">
+            {SITE.email}
+          </a>
+        </li>
+        <li>
+          <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="transition-colors hover:text-white">
+            {SITE.phone}
+          </a>
+        </li>
+      </ul>
+      <ul class="mt-4 flex gap-4">
+        <li>
+          <a href={SITE.social.instagram} class="text-river-300 transition-colors hover:text-white" target="_blank" rel="noopener noreferrer">
+            Instagram<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </li>
+        <li>
+          <a href={SITE.social.facebook} class="text-river-300 transition-colors hover:text-white" target="_blank" rel="noopener noreferrer">
+            Facebook<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </li>
+        <li>
+          <a href={SITE.social.strava} class="text-river-300 transition-colors hover:text-white" target="_blank" rel="noopener noreferrer">
+            Strava<span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-river-900">
+    <p class="mx-auto max-w-6xl px-4 py-5 text-xs text-river-400 sm:px-6">
+      &copy; {year} {SITE.name}. Registered charity no. 000000. All rights reserved.
+    </p>
+  </div>
+</footer>

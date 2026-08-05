@@ -1,0 +1,84 @@
+---
+/**
+ * Membership page — pricing tiers rendered from typed data,
+ * plus an FAQ section.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import MembershipTierCard from '../components/MembershipTierCard.astro';
+import CTABanner from '../components/CTABanner.astro';
+import { membershipTiers } from '../data/membership';
+---
+
+<BaseLayout
+  title="Membership"
+  description="Join Tideway Rowing Club. Learn-to-row courses from £99, full membership from £42/month, junior and student memberships from £18/month."
+>
+  <section class="bg-river-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Membership"
+        title="Find your seat in the boat"
+        intro="No joining fees, no long contracts — just great rowing. Every membership starts with a free taster session."
+      />
+    </div>
+  </section>
+
+  <!-- Pricing tiers -->
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-label="Membership pricing">
+    <div class="grid items-stretch gap-8 pt-4 lg:grid-cols-3">
+      {membershipTiers.map((tier) => <MembershipTierCard tier={tier} />)}
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="mx-auto max-w-3xl px-4 pb-20 sm:px-6" aria-labelledby="faq">
+    <SectionHeading
+      eyebrow="Questions"
+      title="Frequently asked questions"
+    />
+    <div class="mt-10 space-y-3">
+      <details class="group rounded-lg border border-slate-200 bg-white p-5 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold text-river-950 marker:hidden">
+          Do I need any experience to join?
+        </summary>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          None at all. Our Learn to Row course assumes you have never sat in a
+          boat. If you have rowed before, book a taster and a coach will assess
+          which squad suits you best.
+        </p>
+      </details>
+      <details class="group rounded-lg border border-slate-200 bg-white p-5 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold text-river-950 marker:hidden">
+          Do I need to be able to swim?
+        </summary>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          Yes — for safety we ask that all members can swim 50 metres in
+          clothing. Capsize drills are part of every beginner course, and
+          coached launches accompany all novice outings.
+        </p>
+      </details>
+      <details class="group rounded-lg border border-slate-200 bg-white p-5 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold text-river-950 marker:hidden">
+          What should I wear?
+        </summary>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          Close-fitting sports kit and trainers you don't mind getting wet.
+          Avoid baggy tops (they catch in the slide) and bring layers in winter.
+          We provide everything else, including life jackets where required.
+        </p>
+      </details>
+      <details class="group rounded-lg border border-slate-200 bg-white p-5 open:shadow-sm">
+        <summary class="cursor-pointer list-none font-semibold text-river-950 marker:hidden">
+          Can I pause or cancel my membership?
+        </summary>
+        <p class="mt-3 text-sm leading-relaxed text-slate-600">
+          Any time. Memberships are rolling monthly with no minimum term, and we
+          happily pause for injury, exams or extended travel.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <CTABanner />
+</BaseLayout>

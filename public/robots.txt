@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tideway-rowing-club.pages.dev/sitemap-index.xml

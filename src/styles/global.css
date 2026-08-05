@@ -1,0 +1,53 @@
+/*
+ * Global stylesheet — Tailwind CSS v4 (CSS-first configuration).
+ * Instead of a tailwind.config.js file, the theme is declared
+ * here with @theme. Utilities are generated on demand by the
+ * @tailwindcss/vite plugin registered in astro.config.mjs.
+ */
+@import 'tailwindcss';
+
+@theme {
+  /* Club palette: deep river blues + oar-blade gold accent */
+  --color-river-50: #f0f9ff;
+  --color-river-100: #e0f2fe;
+  --color-river-200: #bae6fd;
+  --color-river-300: #7dd3fc;
+  --color-river-400: #38bdf8;
+  --color-river-500: #0ea5e9;
+  --color-river-600: #0284c7;
+  --color-river-700: #0369a1;
+  --color-river-800: #075985;
+  --color-river-900: #0c4a6e;
+  --color-river-950: #082f49;
+
+  --color-blade-300: #fcd34d;
+  --color-blade-400: #fbbf24;
+  --color-blade-500: #f59e0b;
+
+  --font-display: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Source Sans 3', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  @apply bg-white text-slate-800 antialiased;
+}
+
+/* Accessible focus ring for keyboard navigation. */
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-river-600;
+}
