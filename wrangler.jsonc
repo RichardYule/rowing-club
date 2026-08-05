@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // ⚠️ Must match the name of the Worker shown in the Cloudflare dashboard
+  // (Workers & Pages → your project → Settings). Rename here if different.
+  "name": "tideway-rowing-club",
+  "compatibility_date": "2026-08-05",
+
+  // This is a fully static site: there is no worker script ("main"), we just
+  // serve the files that `astro build` emits to ./dist as static assets.
+  "assets": {
+    "directory": "./dist",
+    // Serve the prerendered /404.html (built from src/pages/404.astro) for
+    // requests that don't match a file.
+    "not_found_handling": "404-page"
+  }
+}
