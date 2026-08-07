@@ -1,0 +1,70 @@
+---
+/**
+ * Privacy policy — plain-English UK GDPR summary.
+ * Footer-only page. TODO: review against the club's membership system
+ * (e.g. ClubHub / WebCollect) before launch.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { SITE } from '../consts';
+
+const sections = [
+  {
+    title: 'What we collect',
+    body: 'When you contact us through this website we receive your name, email address and message. Members additionally provide the details needed to run the club: contact and emergency contact details, date of birth for age-category racing, swim declarations, and British Rowing membership numbers.',
+  },
+  {
+    title: 'What we use it for',
+    body: 'Enquiry details are used only to reply to you. Member data is used to run squads, enter crews into competitions, keep members safe on the water, and administer subscriptions. We do not sell data or share it for marketing.',
+  },
+  {
+    title: 'Who sees it',
+    body: 'Contact enquiries go to the relevant committee member. Member data is held in the club’s membership system and is visible only to the committee and relevant coaches. Race entries are shared with competition organisers via British Rowing’s entry systems.',
+  },
+  {
+    title: 'How long we keep it',
+    body: 'Enquiry emails are deleted once resolved. Membership records are kept while you are a member and for up to two years afterwards, unless a longer retention is required for safeguarding or financial records.',
+  },
+  {
+    title: 'Cookies & analytics',
+    body: 'This website does not set tracking cookies and does not use analytics. It is a static site: pages are served as-is, with no advertising or profiling.',
+  },
+  {
+    title: 'Your rights',
+    body: 'You can ask for a copy of the personal data we hold about you, ask us to correct or delete it, or object to how we use it. Contact us using the details below. You also have the right to complain to the Information Commissioner’s Office (ico.org.uk).',
+  },
+];
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`How ${SITE.name} collects, uses and protects personal data — a plain-English summary.`}
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Legal"
+        title="Privacy policy"
+        intro="The short, readable version of how the club handles your data."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <div class="space-y-10">
+      {
+        sections.map((section) => (
+          <div>
+            <h2 class="font-display text-xl font-bold text-royal-950">{section.title}</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-700">{section.body}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-12 rounded-lg bg-royal-50 p-5 text-sm text-slate-600">
+      <strong class="text-royal-800">Data queries:</strong> email <a href={`mailto:${SITE.email}`} class="font-semibold text-royal-700 underline-offset-4 hover:underline">{SITE.email}</a> and your message will reach the committee member responsible for data
+      protection. This policy was last updated in August 2026.
+    </p>
+  </section>
+</BaseLayout>

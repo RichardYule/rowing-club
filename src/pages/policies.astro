@@ -1,0 +1,73 @@
+---
+/**
+ * Club policies — the stable home for governance documents.
+ * Footer-only page per the IA.
+ *
+ * TODO: upload the policy PDFs from the old site to /public/policies/
+ * and set `href` for each entry below.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+interface Policy {
+  title: string;
+  note: string;
+  /** Link to the PDF once migrated; undefined = available on request */
+  href?: string;
+}
+
+const policies: Policy[] = [
+  { title: 'Club Constitution', note: 'How the club is governed, committee roles and AGM rules.' },
+  { title: 'Safeguarding & Child Protection Policy', note: 'Our commitments and procedures for protecting juniors and adults at risk.' },
+  { title: 'Safety Plan & Risk Assessments', note: 'Water safety rules, emergency procedures and venue risk assessments.' },
+  { title: 'Code of Conduct', note: 'What we expect of members, coaches, volunteers and parents.' },
+  { title: 'Privacy Policy', note: 'How the club handles personal data.', href: '/privacy-policy/' },
+];
+---
+
+<BaseLayout
+  title="Club Policies"
+  description="Governance and policy documents for Peterborough City Rowing Club — constitution, safeguarding, safety and conduct."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Governance"
+        title="Club policies"
+        intro="The documents behind how the club runs. Anything marked “on request” is being moved over from the old site — just ask and we'll send a copy."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <ul class="divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white">
+      {
+        policies.map((policy) => (
+          <li class="flex flex-col gap-2 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p class="font-semibold text-royal-950">{policy.title}</p>
+              <p class="mt-0.5 text-sm text-slate-600">{policy.note}</p>
+            </div>
+            {policy.href ? (
+              <a
+                href={policy.href}
+                class="shrink-0 text-sm font-semibold text-royal-700 underline-offset-4 hover:underline"
+              >
+                Read &rarr;
+              </a>
+            ) : (
+              <span class="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
+                On request
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-8 rounded-lg bg-royal-50 p-5 text-sm text-slate-600">
+      <strong class="text-royal-800">Need a copy?</strong> Send us a message via
+      the <a href="/contact/?topic=other" class="font-semibold text-royal-700 underline-offset-4 hover:underline">contact page</a> and the Club Secretary will email the document you need.
+    </p>
+  </section>
+</BaseLayout>

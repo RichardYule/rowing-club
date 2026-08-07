@@ -1,0 +1,139 @@
+---
+/**
+ * EnquiryForm — the single, consolidated enquiry form that replaces the
+ * four old WordPress forms (join / learn-to-row / crew entries / contact).
+ *
+ * The topic selector routes the enquiry to the right committee member, and
+ * pages across the site deep-link with /contact/?topic=<value> so visitors
+ * arrive with the right topic pre-selected.
+ *
+ * Currently submits via the visitor's email client (mailto fallback) so it
+ * works on a purely static host. When a Cloudflare Pages Function is added
+ * (e.g. /api/enquiry), point the form action at it and add a Cloudflare
+ * Turnstile widget for spam protection.
+ */
+import { enquiryTopics } from '../data/enquiry-topics';
+import { SITE } from '../consts';
+---
+
+<form
+  id="enquiry-form"
+  class="space-y-5"
+  method="post"
+  action={`mailto:${SITE.email}`}
+  enctype="text/plain"
+  novalidate
+>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label for="name" class="block text-sm font-semibold text-slate-700">
+        Name <span aria-hidden="true" class="text-rose-600">*</span>
+      </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        autocomplete="name"
+        class="mt-1.5 w-full rounded-md border border-slate-300 px-3.5 py-2.5 text-sm shadow-sm focus:border-royal-500 focus:ring-2 focus:ring-royal-200 focus:outline-none"
+      />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-semibold text-slate-700">
+        Email <span aria-hidden="true" class="text-rose-600">*</span>
+      </label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        autocomplete="email"
+        class="mt-1.5 w-full rounded-md border border-slate-300 px-3.5 py-2.5 text-sm shadow-sm focus:border-royal-500 focus:ring-2 focus:ring-royal-200 focus:outline-none"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="topic" class="block text-sm font-semibold text-slate-700">
+      What's it about?
+    </label>
+    <select
+      id="topic"
+      name="topic"
+      class="mt-1.5 w-full rounded-md border border-slate-300 bg-white px-3.5 py-2.5 text-sm shadow-sm focus:border-royal-500 focus:ring-2 focus:ring-royal-200 focus:outline-none"
+    >
+      {
+        enquiryTopics.map((topic) => (
+          <option value={topic.value} data-routes-to={topic.routesTo}>
+            {topic.label}
+          </option>
+        ))
+      }
+    </select>
+    <p class="mt-1.5 text-xs text-slate-500">
+      Goes straight to <span id="routing-hint" class="font-medium">the right person</span> — no
+      re-forwarding around the committee.
+    </p>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-semibold text-slate-700">
+      Message <span aria-hidden="true" class="text-rose-600">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      required
+      class="mt-1.5 w-full rounded-md border border-slate-300 px-3.5 py-2.5 text-sm shadow-sm focus:border-royal-500 focus:ring-2 focus:ring-royal-200 focus:outline-none"
+    ></textarea>
+  </div>
+
+  <p id="form-status" class="hidden text-sm font-medium" role="status"></p>
+
+  <button
+    type="submit"
+    class="rounded-md bg-royal-700 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-royal-800"
+  >
+    Send message
+  </button>
+</form>
+
+<script>
+  const form = document.getElementById('enquiry-form') as HTMLFormElement | null;
+  const topicSelect = document.getElementById('topic') as HTMLSelectElement | null;
+  const hint = document.getElementById('routing-hint');
+  const status = document.getElementById('form-status');
+
+  const updateHint = () => {
+    const selected = topicSelect?.selectedOptions[0];
+    if (hint && selected instanceof HTMLOptionElement) {
+      hint.textContent = selected.dataset.routesTo ?? 'the right person';
+    }
+  };
+
+  // Pre-select the topic from ?topic=… so deep links (e.g. from
+  // /membership/ or /learn-to-row/) land with the right topic set.
+  const requested = new URLSearchParams(window.location.search).get('topic');
+  if (requested && topicSelect?.querySelector(`option[value="${CSS.escape(requested)}"]`)) {
+    topicSelect.value = requested;
+  }
+  updateHint();
+  topicSelect?.addEventListener('change', updateHint);
+
+  // Progressive enhancement: inline validation feedback. Until a Pages
+  // Function exists, a valid submit falls through to the mailto action.
+  form?.addEventListener('submit', (event) => {
+    if (!form.checkValidity()) {
+      event.preventDefault();
+      if (status) {
+        status.textContent = 'Please fill in the required fields.';
+        status.className = 'text-sm font-medium text-rose-600';
+      }
+      form.reportValidity();
+    } else if (status) {
+      status.textContent = 'Opening your email client…';
+      status.className = 'text-sm font-medium text-royal-700';
+    }
+  });
+</script>

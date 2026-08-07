@@ -1,0 +1,94 @@
+---
+/**
+ * Lake & facility hire — for other clubs, schools and event organisers.
+ * Footer-only page per the IA (distinct audience from members).
+ *
+ * TODO: confirm hire terms, insurance requirements and rates.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABanner from '../components/CTABanner.astro';
+import SitePicture from '../components/SitePicture.astro';
+import lakeImg from '../assets/images/racing-sculler-2023.jpg';
+
+const facilities = [
+  {
+    name: 'The lake',
+    detail: 'Purpose-built rowing lake at Thorpe Meadows with a fully buoyed, multi-lane 1000 m course and 500 m sprint course.',
+  },
+  {
+    name: 'Start & finish infrastructure',
+    detail: 'Stakeboats, start pontoons, finish tower and landing stages — everything needed to run competitive events.',
+  },
+  {
+    name: 'The clubhouse',
+    detail: 'New multi-purpose room (opened August 2026), extended kitchen, bar, changing rooms and showers.',
+  },
+  {
+    name: 'Training facilities',
+    detail: 'Erg room and gym for land training, plus boat storage by arrangement.',
+  },
+  {
+    name: 'Parking & access',
+    detail: 'On-site parking at Thorpe Meadows with trailer access to the boating area, minutes from the Nene Parkway.',
+  },
+];
+---
+
+<BaseLayout
+  title="Lake & Facility Hire"
+  description="Hire the Peterborough City Rowing Club lake and clubhouse at Thorpe Meadows — a buoyed 1000 m course for training camps, school sessions and events."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Lake & facility hire"
+        title="A proper course, an hour from everywhere"
+        intro="Our purpose-built lake at Thorpe Meadows hosts visiting clubs' training camps, school and U3A sessions, and open-water and multi-sport events."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    <SitePicture
+      src={lakeImg}
+      alt="A sculler on the water — the kind of calm conditions visiting crews can expect"
+      sizes="(min-width: 1024px) 72rem, 100vw"
+      widths={[768, 1200, 1600]}
+      class="mb-10 aspect-[21/9] w-full rounded-xl object-cover shadow-sm"
+    />
+    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        facilities.map((facility) => (
+          <li class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+            <h2 class="font-display text-lg font-bold text-royal-950">{facility.name}</h2>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">{facility.detail}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-12 max-w-3xl space-y-4 leading-relaxed text-slate-700">
+      <h2 class="font-display text-xl font-bold text-royal-950">How hiring works</h2>
+      <p>
+        Tell us what you're planning — dates, group size, boats and equipment
+        needed — and we'll confirm availability and a quote. Visiting rowing
+        clubs are usually asked for proof of British Rowing affiliation (or
+        equivalent insurance); event organisers need their own public liability
+        cover.
+      </p>
+      <p>
+        All water sessions need a PCRC-approved safety arrangement: either your
+        own qualified launch driver and risk assessment, or club safety cover
+        by arrangement.
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Plan your camp, session or event"
+    text="Send us your dates and what you need — we'll come back with availability and a quote."
+    buttonLabel="Enquire about hire"
+    buttonHref="/contact/?topic=lake-hire"
+  />
+</BaseLayout>

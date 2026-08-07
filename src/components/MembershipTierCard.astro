@@ -7,22 +7,25 @@ import type { MembershipTier } from '../data/membership';
 
 interface Props {
   tier: MembershipTier;
+  /** Where the call-to-action points — the consolidated enquiry form by default. */
+  ctaHref?: string;
+  ctaLabel?: string;
 }
 
-const { tier } = Astro.props;
+const { tier, ctaHref = '/contact/?topic=join', ctaLabel = 'Enquire now' } = Astro.props;
 ---
 
 <div
   class:list={[
     'relative flex flex-col rounded-2xl p-8',
     tier.featured
-      ? 'bg-river-900 text-white shadow-xl ring-4 ring-blade-400/60'
+      ? 'bg-royal-900 text-white shadow-xl ring-4 ring-gold-400/60'
       : 'border border-slate-200 bg-white shadow-sm',
   ]}
 >
   {
     tier.featured && (
-      <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-blade-400 px-4 py-1 text-xs font-bold uppercase tracking-wider text-river-950">
+      <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gold-400 px-4 py-1 text-xs font-bold uppercase tracking-wider text-royal-950">
         Most popular
       </span>
     )
@@ -31,12 +34,12 @@ const { tier } = Astro.props;
   <h3
     class:list={[
       'font-display text-xl font-bold',
-      tier.featured ? 'text-white' : 'text-river-950',
+      tier.featured ? 'text-white' : 'text-royal-950',
     ]}
   >
     {tier.name}
   </h3>
-  <p class:list={['mt-1 text-sm', tier.featured ? 'text-river-200' : 'text-slate-500']}>
+  <p class:list={['mt-1 text-sm', tier.featured ? 'text-royal-200' : 'text-slate-500']}>
     {tier.blurb}
   </p>
 
@@ -51,7 +54,7 @@ const { tier } = Astro.props;
           <svg
             class:list={[
               'mt-0.5 h-4 w-4 shrink-0',
-              tier.featured ? 'text-blade-400' : 'text-river-600',
+              tier.featured ? 'text-gold-400' : 'text-royal-600',
             ]}
             viewBox="0 0 24 24"
             fill="none"
@@ -61,7 +64,7 @@ const { tier } = Astro.props;
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
           </svg>
-          <span class={tier.featured ? 'text-river-100' : 'text-slate-600'}>
+          <span class={tier.featured ? 'text-royal-100' : 'text-slate-600'}>
             {feature}
           </span>
         </li>
@@ -70,14 +73,14 @@ const { tier } = Astro.props;
   </ul>
 
   <a
-    href="/contact"
+    href={ctaHref}
     class:list={[
       'mt-8 rounded-md px-5 py-2.5 text-center text-sm font-bold transition-colors',
       tier.featured
-        ? 'bg-blade-400 text-river-950 hover:bg-blade-300'
-        : 'bg-river-700 text-white hover:bg-river-800',
+        ? 'bg-gold-400 text-royal-950 hover:bg-gold-300'
+        : 'bg-royal-700 text-white hover:bg-royal-800',
     ]}
   >
-    Enquire now
+    {ctaLabel}
   </a>
 </div>

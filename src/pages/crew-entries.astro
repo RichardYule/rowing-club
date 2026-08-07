@@ -1,0 +1,92 @@
+---
+/**
+ * Crew entries — how PCRC members get entered into regattas.
+ * Footer-only page per the IA (a working member tool, not marketing).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const steps = [
+  {
+    title: 'Tell your squad you want to race',
+    detail:
+      'Watch the fixture list and the squad WhatsApp groups. Put your name down with your captain or coach — they confirm the crew and the events.',
+  },
+  {
+    title: 'The club submits the entry',
+    detail:
+      'Our Regatta Secretary enters crews through British Rowing’s online entries system (BROE). You don’t need a BROE account yourself.',
+  },
+  {
+    title: 'Pay your entry fees',
+    detail:
+      'Entry fees are confirmed before the entry goes in — typically £12–£20 per seat depending on the event. Nothing is entered before you’ve agreed the cost.',
+  },
+  {
+    title: 'Watch for the draw',
+    detail:
+      'Draws are usually published a few days before racing. We link to them from the events page as soon as they’re out.',
+  },
+];
+---
+
+<BaseLayout
+  title="Crew Entries"
+  description="How Peterborough City Rowing Club members enter crews for regattas and head races — the process, deadlines and costs."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="For members"
+        title="Crew entries"
+        intro="Racing is organised through your squad — here's how a crew gets from an idea to the start line."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <ol class="space-y-6">
+      {
+        steps.map((step, index) => (
+          <li class="flex gap-5">
+            <span
+              class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-royal-700 font-display text-lg font-bold text-white"
+              aria-hidden="true"
+            >
+              {index + 1}
+            </span>
+            <div>
+              <h2 class="font-display text-lg font-bold text-royal-950">{step.title}</h2>
+              <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{step.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-12 space-y-4 rounded-xl border border-slate-200 bg-white p-6 text-sm leading-relaxed text-slate-700 shadow-sm">
+      <h2 class="font-display text-base font-bold text-royal-950">
+        Deadlines matter
+      </h2>
+      <p>
+        Entries for most regattas close around two weeks before race day, and
+        popular events fill up earlier. If you miss the club's internal
+        deadline — always a few days before the official one — we usually can't
+        squeeze a crew in.
+      </p>
+      <p>
+        Entries for our own Spring and Summer Regattas work the same way, just
+        with home advantage on the draw.
+      </p>
+    </div>
+
+    <p class="mt-10">
+      <a
+        href="/contact/?topic=crew-entries"
+        class="inline-block rounded-md bg-royal-700 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-royal-800"
+      >
+        Ask the Regatta Secretary
+      </a>
+    </p>
+  </section>
+</BaseLayout>

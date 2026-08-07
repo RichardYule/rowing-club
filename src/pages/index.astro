@@ -1,13 +1,15 @@
 ---
 /**
- * Home page — hero, club highlights, upcoming events preview
- * and a call to action.
+ * Home page — hero, club highlights, upcoming events, latest news,
+ * a Support-the-Club strip and the join CTA.
  */
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import EventCard from '../components/EventCard.astro';
+import NewsCard from '../components/NewsCard.astro';
 import CTABanner from '../components/CTABanner.astro';
 import { events } from '../data/events';
 import { SITE } from '../consts';
@@ -15,6 +17,11 @@ import { SITE } from '../consts';
 // Show the next three events (data is pre-sorted by date).
 const upcoming = [...events]
   .sort((a, b) => a.date.localeCompare(b.date))
+  .slice(0, 3);
+
+// Latest three published news posts.
+const latestNews = (await getCollection('news', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 ---
 
@@ -24,58 +31,59 @@ const upcoming = [...events]
   <!-- Why row with us -->
   <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6" aria-labelledby="why-us">
     <SectionHeading
-      eyebrow="Why Tideway"
+      eyebrow="Why PCRC"
       title="A club for every rower"
-      intro="From your first strokes to national regattas, our volunteer coaches and modern fleet support rowers of every age and ambition."
+      intro="From your first strokes to side-by-side sprint finals, our volunteer coaches and purpose-built lake support rowers of every age and ambition."
     />
     <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <FeatureCard
         icon="boat"
-        title="Modern fleet"
-        text="Racing shells from singles to eights, plus stable training boats for beginners, all maintained by our boatman."
+        title="Purpose-built lake"
+        text="A fully buoyed 1000 m course at Thorpe Meadows — calm water, no river traffic, and racing on our doorstep."
       />
       <FeatureCard
         icon="people"
-        title="Expert coaching"
-        text="Level 2+ volunteer coaches run structured squads for juniors, seniors, masters and complete novices."
+        title="Coached squads"
+        text="Men's, women's, junior, development and U3A squads, all led by qualified volunteer coaches."
       />
       <FeatureCard
         icon="trophy"
-        title="Racing calendar"
-        text="We compete at heads and regattas across the country, from local matches to Henley Royal Regatta qualifiers."
+        title="Racing at home & away"
+        text="Two home regattas a year at Thorpe Meadows, plus head races and regattas across the country."
       />
       <FeatureCard
         icon="heart"
         title="Welcoming community"
-        text="Social rows, club suppers and a thriving volunteer scene — rowing is the excuse, the people are the reason."
+        text="A brand-new clubhouse, Wednesday club nights and a volunteer scene that keeps everything afloat."
       />
     </div>
   </section>
 
   <!-- Stats strip -->
-  <section class="bg-river-50" aria-label="Club statistics">
+  <!-- TODO: confirm these numbers with the committee -->
+  <section class="bg-royal-50" aria-label="Club statistics">
     <dl
       class="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-4 py-14 text-center sm:px-6 lg:grid-cols-4"
     >
       <div>
-        <dt class="sr-only">Years on the river</dt>
-        <dd class="font-display text-4xl font-extrabold text-river-800">134</dd>
-        <dd class="mt-1 text-sm font-medium text-slate-600">Years on the river</dd>
+        <dt class="sr-only">Years on the water</dt>
+        <dd class="font-display text-4xl font-extrabold text-royal-800">75+</dd>
+        <dd class="mt-1 text-sm font-medium text-slate-600">Years on the water</dd>
       </div>
       <div>
         <dt class="sr-only">Active members</dt>
-        <dd class="font-display text-4xl font-extrabold text-river-800">260+</dd>
+        <dd class="font-display text-4xl font-extrabold text-royal-800">150+</dd>
         <dd class="mt-1 text-sm font-medium text-slate-600">Active members</dd>
       </div>
       <div>
-        <dt class="sr-only">Boats in the fleet</dt>
-        <dd class="font-display text-4xl font-extrabold text-river-800">48</dd>
-        <dd class="mt-1 text-sm font-medium text-slate-600">Boats in the fleet</dd>
+        <dt class="sr-only">Home regattas each year</dt>
+        <dd class="font-display text-4xl font-extrabold text-royal-800">2</dd>
+        <dd class="mt-1 text-sm font-medium text-slate-600">Home regattas each year</dd>
       </div>
       <div>
-        <dt class="sr-only">Pots won last season</dt>
-        <dd class="font-display text-4xl font-extrabold text-river-800">31</dd>
-        <dd class="mt-1 text-sm font-medium text-slate-600">Pots won last season</dd>
+        <dt class="sr-only">Metres of buoyed course</dt>
+        <dd class="font-display text-4xl font-extrabold text-royal-800">1000m</dd>
+        <dd class="mt-1 text-sm font-medium text-slate-600">Metres of buoyed course</dd>
       </div>
     </dl>
   </section>
@@ -85,19 +93,72 @@ const upcoming = [...events]
     <SectionHeading
       eyebrow="What's on"
       title="Upcoming events"
-      intro="Regattas, courses and socials — there's always something happening at the club."
+      intro="Regattas, courses and club nights — there's always something happening at Thorpe Meadows."
     />
     <div class="mt-12 grid gap-5 lg:grid-cols-1">
       {upcoming.map((event) => <EventCard event={event} />)}
     </div>
     <p class="mt-8 text-center">
       <a
-        href="/events"
-        class="font-semibold text-river-700 underline-offset-4 hover:underline"
+        href="/events/"
+        class="font-semibold text-royal-700 underline-offset-4 hover:underline"
       >
         View the full calendar &rarr;
       </a>
     </p>
+  </section>
+
+  <!-- Latest news -->
+  {
+    latestNews.length > 0 && (
+      <section class="border-t border-slate-100 bg-royal-50/60" aria-labelledby="latest-news">
+        <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <SectionHeading
+            eyebrow="News"
+            title="Latest from the club"
+          />
+          <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {latestNews.map((post) => <NewsCard post={post} />)}
+          </div>
+          <p class="mt-8 text-center">
+            <a
+              href="/news/"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Read all the news &rarr;
+            </a>
+          </p>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Support the club strip (persistent /support/ promotion per the IA) -->
+  <section class="border-t border-slate-100" aria-labelledby="support-us">
+    <div
+      class="mx-auto flex max-w-6xl flex-col items-center gap-6 px-4 py-16 text-center sm:px-6"
+    >
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-600">
+        Support the club
+      </p>
+      <h2
+        id="support-us"
+        class="max-w-2xl font-display text-2xl font-bold text-royal-950 sm:text-3xl"
+      >
+        £500 bought our junior girls a pair of blades. A volunteer day painted
+        our extension.
+      </h2>
+      <p class="max-w-2xl text-slate-600">
+        Sponsors and volunteers keep PCRC affordable and our regattas running.
+        Whether you're a company or a neighbour, there's a way to help.
+      </p>
+      <a
+        href="/support/"
+        class="rounded-md border-2 border-royal-700 px-7 py-3 text-base font-bold text-royal-700 transition-colors hover:bg-royal-50"
+      >
+        Support the club
+      </a>
+    </div>
   </section>
 
   <CTABanner />

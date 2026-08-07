@@ -12,10 +12,11 @@ interface Props {
 const { event } = Astro.props;
 
 const categoryStyles: Record<ClubEvent['category'], string> = {
-  Regatta: 'bg-blade-400/15 text-amber-700',
+  Regatta: 'bg-gold-400/15 text-amber-700',
   Social: 'bg-rose-100 text-rose-700',
-  Training: 'bg-river-100 text-river-800',
+  Training: 'bg-royal-100 text-royal-800',
   Course: 'bg-emerald-100 text-emerald-800',
+  Club: 'bg-slate-200 text-slate-700',
 };
 
 const day = new Date(event.date).getDate();
@@ -29,7 +30,7 @@ const month = new Intl.DateTimeFormat('en-GB', { month: 'short' }).format(
 >
   <!-- Date badge -->
   <div
-    class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-lg bg-river-700 text-white"
+    class="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-lg bg-royal-700 text-white"
   >
     <span class="font-display text-2xl font-extrabold leading-none">{day}</span>
     <span class="text-xs font-semibold uppercase tracking-wide">{month}</span>
@@ -37,7 +38,7 @@ const month = new Intl.DateTimeFormat('en-GB', { month: 'short' }).format(
 
   <div class="min-w-0">
     <div class="flex flex-wrap items-center gap-2">
-      <h3 class="font-display text-lg font-bold text-river-950">
+      <h3 class="font-display text-lg font-bold text-royal-950">
         {event.title}
       </h3>
       <span

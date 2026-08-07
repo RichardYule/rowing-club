@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   // ⚠️ Must match the name of the Worker shown in the Cloudflare dashboard
   // (Workers & Pages → your project → Settings). Rename here if different.
-  "name": "tideway-rowing-club",
+  "name": "rowing-club",
   "compatibility_date": "2026-08-05",
 
   // This is a fully static site: there is no worker script ("main"), we just

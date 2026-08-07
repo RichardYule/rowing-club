@@ -6,8 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   // Canonical site URL — used for sitemap, canonical links and Open Graph URLs.
-  // Update this to your real domain (or your *.pages.dev URL) before going live.
-  site: "https://tideway-rowing-club.pages.dev",
+  site: "https://peterboroughcityrowing.co.uk",
 
   // The site is fully static (the default), so `astro build` emits plain
   // HTML/CSS/JS to ./dist — exactly what Cloudflare Pages serves best.

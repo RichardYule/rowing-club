@@ -1,0 +1,55 @@
+---
+/**
+ * NewsCard — teaser card for one news post, used on /news/ and the
+ * home page. Shows the post's photo when it has one.
+ */
+import type { CollectionEntry } from 'astro:content';
+import SitePicture from './SitePicture.astro';
+
+interface Props {
+  post: CollectionEntry<'news'>;
+}
+
+const { post } = Astro.props;
+const href = `/news/${post.id}/`;
+const published = new Intl.DateTimeFormat('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(post.data.pubDate);
+---
+
+<article
+  class="flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+>
+  {
+    post.data.image && (
+      <SitePicture
+        src={post.data.image}
+        alt={post.data.imageAlt ?? ''}
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        widths={[480, 768, 1200]}
+        class="aspect-[16/9] w-full object-cover"
+      />
+    )
+  }
+  <div class="flex flex-1 flex-col p-6">
+    <p class="text-xs font-semibold uppercase tracking-wider text-royal-600">
+      <time datetime={post.data.pubDate.toISOString()}>{published}</time>
+    </p>
+    <h3 class="mt-2 font-display text-lg font-bold text-royal-950">
+      <a href={href} class="transition-colors hover:text-royal-700">{post.data.title}</a>
+    </h3>
+    <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+      {post.data.description}
+    </p>
+    <p class="mt-4">
+      <a
+        href={href}
+        class="text-sm font-semibold text-royal-700 underline-offset-4 hover:underline"
+      >
+        Read the story &rarr;
+      </a>
+    </p>
+  </div>
+</article>

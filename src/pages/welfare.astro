@@ -1,0 +1,107 @@
+---
+/**
+ * Welfare & safety — safeguarding contacts and commitments.
+ * Footer-only page, but linked prominently from /squads/#juniors and
+ * /learn-to-row/#junior for parents.
+ *
+ * TODO: the Welfare Officer should review this page and add the named
+ * contact and any club-specific reporting process.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { contacts } from '../data/contacts';
+
+const welfare = contacts.find((c) => c.role === 'Welfare Officer');
+---
+
+<BaseLayout
+  title="Welfare & Safety"
+  description="Safeguarding and welfare at Peterborough City Rowing Club — our commitments, and who to contact with any concern."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Welfare & safety"
+        title="Everyone's rowing, everyone's responsibility"
+        intro="The club is committed to rowing being safe and enjoyable for every member — especially children and adults at risk. If something doesn't feel right, tell us."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+    <!-- Contact card first: the most important thing on the page -->
+    <div class="rounded-xl border border-royal-200 bg-royal-50 p-6">
+      <h2 class="font-display text-xl font-bold text-royal-950">
+        Report a concern
+      </h2>
+      <p class="mt-2 text-sm leading-relaxed text-slate-700">
+        Contact our Welfare Officer
+        {welfare?.name && <>({welfare.name}) </>}directly, in confidence:
+      </p>
+      <p class="mt-3">
+        <a
+          href={`mailto:${welfare?.email ?? 'welfare@peterboroughcityrowing.co.uk'}`}
+          class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+        >
+          {welfare?.email ?? 'welfare@peterboroughcityrowing.co.uk'}
+        </a>
+      </p>
+      <p class="mt-3 text-sm leading-relaxed text-slate-700">
+        If someone is in immediate danger, call <strong>999</strong>. You can also
+        contact British Rowing's safeguarding team directly via <a
+          href="https://www.britishrowing.org/about-us/safeguarding/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-royal-700 underline-offset-4 hover:underline"
+        >
+          britishrowing.org/safeguarding<span class="sr-only"> (opens in a new tab)</span>
+        </a>.
+      </p>
+    </div>
+
+    <div class="mt-12 space-y-10">
+      <div>
+        <h2 class="font-display text-xl font-bold text-royal-950">Our commitments</h2>
+        <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+          <li class="flex items-start gap-2.5">
+            <span aria-hidden="true" class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-royal-600"></span>
+            All coaches and regular volunteers working with juniors are DBS-checked.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span aria-hidden="true" class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-royal-600"></span>
+            We follow British Rowing's safeguarding policies and reporting procedures.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span aria-hidden="true" class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-royal-600"></span>
+            Every junior outing has a qualified coach and a safety launch on the water.
+          </li>
+          <li class="flex items-start gap-2.5">
+            <span aria-hidden="true" class="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-royal-600"></span>
+            Concerns are taken seriously, handled confidentially, and escalated to
+            British Rowing or statutory services where needed.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl font-bold text-royal-950">Safety on the water</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          All members complete a swim declaration and capsize awareness before
+          boating. Outings follow the club's safety plan and British Rowing's
+          Row Safe guidance, with risk assessments for the lake, landing stages
+          and equipment. The full safety documents live on the <a href="/policies" class="font-medium text-royal-700 underline-offset-4 hover:underline">policies page</a>.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-display text-xl font-bold text-royal-950">For parents</h2>
+        <p class="mt-3 text-sm leading-relaxed text-slate-700">
+          You're welcome to watch any junior session from the bank, and the
+          Junior Co-ordinator is happy to explain how sessions run before your
+          child's first outing. Kit guidance, session times and what to expect
+          are on the <a href="/squads/#juniors" class="font-medium text-royal-700 underline-offset-4 hover:underline">junior squad section</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

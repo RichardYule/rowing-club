@@ -1,86 +1,154 @@
 ---
 /**
- * About page — club history, values and squads.
+ * About — club history, facilities and social life as anchor sections
+ * (#history, #facilities, #social), replacing the old "About Us" dumping
+ * ground of nine unrelated pages.
+ *
+ * TODO: fold in the richer Club History text from the old site.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CTABanner from '../components/CTABanner.astro';
+import SitePicture from '../components/SitePicture.astro';
 import { SITE } from '../consts';
+import historyImg from '../assets/images/history-50th-reunion.jpg';
+import facilitiesImg from '../assets/images/squad-men-quad.jpg';
+import socialImg from '../assets/images/boat-naming-2025.jpg';
+
+const photoClass = 'mt-8 aspect-[3/2] w-full rounded-xl object-cover shadow-sm';
+const photoSizes = '(min-width: 768px) 48rem, 100vw';
 ---
 
 <BaseLayout
   title="About"
-  description={`Founded in ${SITE.founded}, ${SITE.name} is one of London's oldest rowing clubs. Learn about our history, values and squads.`}
+  description={`${SITE.name} — rowing on the purpose-built lake at Thorpe Meadows, Peterborough. Our history, facilities and club life.`}
 >
   <!-- Page header -->
-  <section class="bg-river-50">
+  <section class="bg-royal-50">
     <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
       <SectionHeading
         align="left"
-        eyebrow="About us"
-        title="One hundred and thirty years of blades on the Tideway"
-        intro="A volunteer-run club with a simple belief: rowing should be open to everyone."
+        eyebrow="About the club"
+        title="Peterborough's rowing club"
+        intro="A volunteer-run club with a simple belief: rowing should be open to everyone in our city."
       />
     </div>
   </section>
 
   <!-- History -->
-  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-    <h2 class="font-display text-2xl font-bold text-river-950">Our story</h2>
-    <div class="mt-5 space-y-4 leading-relaxed text-slate-700">
-      <p>
-        {SITE.name} was founded in {SITE.founded} by a group of watermen who
-        wanted a club that welcomed working crews, not just gentlemen amateurs.
-        The first boathouse was a converted barge moored by the embankment; the
-        first eight was built of cedar and christened with river water.
-      </p>
-      <p>
-        Through two world wars the club kept boating — sometimes with scratch
-        crews of veterans and schoolboys — and in 1974 we became one of the
-        first Tideway clubs to open every squad to women. That decision shaped
-        who we are: competitive, yes, but community first.
-      </p>
-      <p>
-        Today our 260 members row from a modern boathouse on the same stretch
-        of river. We field juniors, seniors and masters at regattas nationwide,
-        and our learn-to-row programme introduces over a hundred beginners to
-        the sport every year.
-      </p>
+  <section id="history" class="scroll-mt-20">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Our story</h2>
+      <div class="mt-5 space-y-4 leading-relaxed text-slate-700">
+        <p>
+          {SITE.name} has been part of the city's sporting life for
+          generations. From early days on the River Nene, the club made its
+          home at Thorpe Meadows when the purpose-built rowing lake was
+          created — giving Peterborough one of the best sprint courses in the
+          region.
+        </p>
+        <p>
+          Since then the club has hosted the Peterborough Spring and Summer
+          Regattas every year, introduced thousands of beginners to the sport,
+          and sent crews to compete across the country.
+        </p>
+        <p>
+          In August 2026 we opened our <a href="/support/#the-extension" class="font-medium text-royal-700 underline-offset-4 hover:underline">new clubhouse extension</a> —
+          a large multi-purpose room and extended kitchen, funded entirely by
+          members, sponsors and friends of the club.
+        </p>
+      </div>
+      <SitePicture
+        src={historyImg}
+        alt="Members and friends at the club's 50th-anniversary reunion row in 2026"
+        sizes={photoSizes}
+        class={photoClass}
+      />
     </div>
   </section>
 
-  <!-- Squads -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-      <h2 class="font-display text-2xl font-bold text-river-950">Our squads</h2>
+  <!-- Facilities -->
+  <section id="facilities" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Facilities</h2>
+      <div class="mt-5 space-y-4 leading-relaxed text-slate-700">
+        <p>
+          The club rows from its own boathouse on the lake at Thorpe Meadows:
+          a fully buoyed, multi-lane <strong>1000 m course</strong> with a
+          500 m sprint option, stakeboats, start pontoons and a finish tower.
+        </p>
+        <p>
+          Indoors, members use the erg room and gym, changing rooms and
+          showers, the bar — and the new multi-purpose room for land training,
+          briefings and socials.
+        </p>
+        <p>
+          Visiting clubs, schools and event organisers can book the lake and
+          clubhouse: see <a href="/lake-hire/" class="font-medium text-royal-700 underline-offset-4 hover:underline">lake & facility hire</a>.
+        </p>
+      </div>
+      <SitePicture
+        src={facilitiesImg}
+        alt="A PCRC quad out training on the lake at Thorpe Meadows"
+        sizes={photoSizes}
+        class={photoClass}
+      />
+    </div>
+  </section>
+
+  <!-- Social life (deliberately low-key: serves existing social members,
+       does not promote new social memberships — club decision) -->
+  <section id="social" class="scroll-mt-20 border-t border-slate-100">
+    <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Club life</h2>
+      <div class="mt-5 space-y-4 leading-relaxed text-slate-700">
+        <p>
+          The bar opens on Wednesday club nights, and the social calendar
+          runs through the year — from the New Year awards night to regatta
+          barbecues on the bank. The <a href="/events/" class="font-medium text-royal-700 underline-offset-4 hover:underline">events page</a> has what's coming up.
+        </p>
+      </div>
+      <SitePicture
+        src={socialImg}
+        alt="Members naming seven new club boats in April 2025"
+        sizes={photoSizes}
+        class={photoClass}
+      />
+    </div>
+  </section>
+
+  <!-- Squads summary -->
+  <section class="border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Our squads</h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
-        <div class="rounded-xl border border-slate-200 p-6">
-          <h3 class="font-display text-lg font-bold text-river-800">Juniors (11–18)</h3>
+        <a href="/squads/#juniors" class="rounded-xl border border-slate-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <h3 class="font-display text-lg font-bold text-royal-800">Juniors (11–18)</h3>
           <p class="mt-2 text-sm leading-relaxed text-slate-600">
-            Three coached sessions a week with a clear pathway from novice to
-            national schools' regattas. All coaches are DBS-checked.
+            Coached sessions after school and at weekends, with a clear pathway
+            from first strokes to junior regattas.
           </p>
-        </div>
-        <div class="rounded-xl border border-slate-200 p-6">
-          <h3 class="font-display text-lg font-bold text-river-800">Seniors</h3>
+        </a>
+        <a href="/squads/#men" class="rounded-xl border border-slate-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <h3 class="font-display text-lg font-bold text-royal-800">Men & Women</h3>
           <p class="mt-2 text-sm leading-relaxed text-slate-600">
-            Performance and club squads training up to six times a week, with
-            erg testing, video analysis and a full racing calendar.
+            Senior squads racing through the regatta and head-race seasons —
+            all standards, from first regatta to experienced eights.
           </p>
-        </div>
-        <div class="rounded-xl border border-slate-200 p-6">
-          <h3 class="font-display text-lg font-bold text-river-800">Masters & Recreational</h3>
+        </a>
+        <a href="/squads/#u3a" class="rounded-xl border border-slate-200 bg-white p-6 transition-shadow hover:shadow-md">
+          <h3 class="font-display text-lg font-bold text-royal-800">Development & U3A</h3>
           <p class="mt-2 text-sm leading-relaxed text-slate-600">
-            Racing crews from 27 to 80+, plus a thriving recreational group who
-            row for fitness, friendship and the occasional pub stop.
+            The bridge from Learn to Row to racing, plus friendly daytime
+            rowing with the U3A.
           </p>
-        </div>
+        </a>
       </div>
     </div>
   </section>
 
   <CTABanner
-    heading="Come and see the boathouse"
-    text="Drop by any Saturday morning — the coffee is always on and there's usually a crew heading out."
+    heading="Come and see the club"
+    text="Drop by on a Saturday morning — the coffee's on and there's usually a crew heading out."
   />
 </BaseLayout>

@@ -1,49 +1,174 @@
 ---
 /**
- * Events page — full club calendar rendered from typed data,
- * sorted chronologically.
+ * Events — our hosted regattas, the club calendar, and where to find
+ * results (phase 1 of the results plan: curated links to the external
+ * systems, not duplication). Course records get their own page.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import EventCard from '../components/EventCard.astro';
 import CTABanner from '../components/CTABanner.astro';
-import { events } from '../data/events';
+import { events, hostedRegattas } from '../data/events';
+import SitePicture from '../components/SitePicture.astro';
+import regattaImg from '../assets/images/hero-racing-eight.jpg';
 
 const sortedEvents = [...events].sort((a, b) => a.date.localeCompare(b.date));
+
+/** The external results systems used by UK regattas (IA decision 4). */
+const resultsSystems = [
+  {
+    name: 'rowresults.co.uk',
+    url: 'https://rowresults.co.uk',
+    detail: 'Regatta results from across the UK, including many of our away fixtures.',
+  },
+  {
+    name: 'Time-Team Regatta',
+    url: 'https://regatta.time-team.nl',
+    detail: 'Draws, live racing and results from regattas run on the Time-Team platform.',
+  },
+  {
+    name: 'Raceleader',
+    url: 'https://www.raceleader.co.uk',
+    detail: 'Entries and results for events using the Raceleader system.',
+  },
+];
 ---
 
 <BaseLayout
   title="Events"
-  description="Regattas, training camps, courses and socials at Tideway Rowing Club. See what's coming up and how to take part."
+  description="Regattas at Thorpe Meadows, the Peterborough City Rowing Club calendar, and where to find draws and results."
 >
-  <section class="bg-river-50">
+  <section class="bg-royal-50">
     <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
       <SectionHeading
-        eyebrow="Calendar"
-        title="Club events"
-        intro="Everything from head races on the championship course to ceilidhs in the clubhouse bar."
+        eyebrow="Events"
+        title="Race days and club days"
+        intro="Two home regattas, a full away calendar, and the club nights in between."
       />
+      <nav class="mt-8 flex flex-wrap justify-center gap-2" aria-label="Sections on this page">
+        {
+          [
+            ['#regattas', 'Our regattas'],
+            ['#calendar', 'Calendar'],
+            ['#results', 'Results'],
+          ].map(([href, label]) => (
+            <a
+              href={href}
+              class="rounded-full border border-royal-200 bg-white px-4 py-1.5 text-sm font-semibold text-royal-700 transition-colors hover:bg-royal-100"
+            >
+              {label}
+            </a>
+          ))
+        }
+      </nav>
     </div>
   </section>
 
-  <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6" aria-label="Upcoming club events">
-    <div class="grid gap-5">
-      {sortedEvents.map((event) => <EventCard event={event} />)}
+  <!-- Hosted regattas -->
+  <section id="regattas" class="scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Our home regattas</h2>
+      <p class="mt-3 max-w-3xl leading-relaxed text-slate-700">
+        Twice a year the lake fills with visiting clubs. Racing is free to
+        watch, the clubhouse does the catering, and the whole event is run by
+        club volunteers.
+      </p>
+      <SitePicture
+        src={regattaImg}
+        alt="A PCRC eight racing side by side at a summer regatta"
+        sizes="(min-width: 1024px) 72rem, 100vw"
+        widths={[768, 1200, 1600]}
+        class="mt-8 aspect-[21/9] w-full rounded-xl object-cover shadow-sm"
+      />
+      <div class="mt-8 grid gap-6 lg:grid-cols-2">
+        {
+          hostedRegattas.map((regatta) => (
+            <article class="flex flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+              <p class="text-xs font-semibold uppercase tracking-wider text-royal-600">
+                {regatta.usualDates}
+              </p>
+              <h3 class="mt-2 font-display text-xl font-bold text-royal-950">{regatta.name}</h3>
+              <p class="mt-1 text-sm font-medium text-slate-500">{regatta.course}</p>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-600">{regatta.description}</p>
+              <p class="mt-4 rounded-lg bg-royal-50 p-4 text-sm text-slate-600">
+                <strong class="text-royal-800">Spectators:</strong> {regatta.spectatorNote}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        <p class="rounded-lg border border-slate-200 bg-white p-5 text-sm text-slate-600">
+          <strong class="text-royal-800">Visiting crews & coaches:</strong> entries,
+          draws and event documents are published on the relevant results
+          system (see <a href="#results" class="font-semibold text-royal-700 underline-offset-4 hover:underline">Results</a> below). Trailer parking is signed from the Thorpe Meadows entrance.
+        </p>
+        <p class="rounded-lg border border-slate-200 bg-white p-5 text-sm text-slate-600">
+          <strong class="text-royal-800">Want to help?</strong> Regattas need around
+          thirty volunteers a day — from stakeboats to the Pimms stall. <a href="/support/#volunteering" class="font-semibold text-royal-700 underline-offset-4 hover:underline">See the roles</a>.
+        </p>
+      </div>
     </div>
-    <p class="mt-10 rounded-lg bg-river-50 p-5 text-sm text-slate-600">
-      <strong class="text-river-800">Taking part:</strong> members can sign up
-      for any event via the club app. Non-members are welcome at social events
-      and can register for learn-to-row courses directly — just
-      <a href="/contact" class="font-semibold text-river-700 underline-offset-4 hover:underline">
-        get in touch</a
-      >.
-    </p>
+  </section>
+
+  <!-- Calendar -->
+  <section id="calendar" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6" aria-label="Upcoming club events">
+      <h2 class="font-display text-2xl font-bold text-royal-950">The calendar</h2>
+      <div class="mt-8 grid gap-5">
+        {sortedEvents.map((event) => <EventCard event={event} />)}
+      </div>
+      <p class="mt-10 rounded-lg bg-white p-5 text-sm text-slate-600">
+        <strong class="text-royal-800">Taking part:</strong> members sign up for
+        racing through their squad — see <a href="/crew-entries/" class="font-semibold text-royal-700 underline-offset-4 hover:underline">crew entries</a>.
+        Non-members are welcome at social events and can book courses directly —
+        just <a href="/contact/" class="font-semibold text-royal-700 underline-offset-4 hover:underline">get in touch</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="results" class="scroll-mt-20 border-t border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Results</h2>
+      <p class="mt-3 max-w-3xl leading-relaxed text-slate-700">
+        UK regattas publish draws and results on their own systems — we link to
+        them rather than copying the data. Results for our home regattas appear
+        on the system in use that year.
+      </p>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          resultsSystems.map((system) => (
+            <a
+              href={system.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <h3 class="font-display text-lg font-bold text-royal-800 group-hover:text-royal-600">
+                {system.name}
+                <span class="sr-only"> (opens in a new tab)</span>
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-600">{system.detail}</p>
+              <p class="mt-4 text-sm font-semibold text-royal-700">
+                Open site &rarr;
+              </p>
+            </a>
+          ))
+        }
+      </div>
+      <p class="mt-8 max-w-3xl text-sm leading-relaxed text-slate-600">
+        <strong class="text-royal-800">Course records</strong> for the Thorpe
+        Meadows 500 m and 1000 m courses live on our <a href="/events/course-records/" class="font-semibold text-royal-700 underline-offset-4 hover:underline">course records page</a>.
+        Looking for a specific past PCRC result? <a href="/contact/?topic=press" class="font-semibold text-royal-700 underline-offset-4 hover:underline">Ask the press secretary</a>.
+      </p>
+    </div>
   </section>
 
   <CTABanner
     heading="Want to race with us?"
-    text="New members are welcome in every squad. Join before our next head race and you could be on the start line this season."
+    text="New members are welcome in every squad. Join before the next fixture and you could be on the start line this season."
     buttonLabel="Join the club"
-    buttonHref="/membership"
+    buttonHref="/membership/"
   />
 </BaseLayout>

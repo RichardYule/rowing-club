@@ -1,0 +1,77 @@
+---
+/**
+ * Course records — the 500 m and 1000 m tables together on one page
+ * (#500m, #1000m), replacing two near-identical pages on the old site.
+ * Data lives in src/data/course-records.ts.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { records500m, records1000m, type CourseRecord } from '../../data/course-records';
+
+const tables: { id: string; title: string; records: CourseRecord[] }[] = [
+  { id: '500m', title: '500 m course records', records: records500m },
+  { id: '1000m', title: '1000 m course records', records: records1000m },
+];
+---
+
+<BaseLayout
+  title="Course Records"
+  description="Course records for the 500 m and 1000 m courses at Thorpe Meadows, home of Peterborough City Rowing Club."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Thorpe Meadows"
+        title="Course records"
+        intro="The fastest times ever set on our home lake, over both sprint distances."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+    <!-- Migration note — remove once src/data/course-records.ts is complete -->
+    <p class="rounded-lg border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
+      <strong>We're updating these tables.</strong> The full records from the
+      old website are being migrated. Know of a missing record? <a href="/contact/?topic=other" class="font-semibold underline underline-offset-4">Tell us</a>.
+    </p>
+
+    {
+      tables.map((table) => (
+        <div id={table.id} class="mt-12 scroll-mt-20">
+          <h2 class="font-display text-xl font-bold text-royal-950">{table.title}</h2>
+          <div class="mt-4 overflow-x-auto rounded-xl border border-slate-200">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="bg-royal-900 text-white">
+                  <th scope="col" class="px-5 py-3 font-semibold">Event</th>
+                  <th scope="col" class="px-5 py-3 font-semibold">Crew</th>
+                  <th scope="col" class="px-5 py-3 font-semibold">Time</th>
+                  <th scope="col" class="px-5 py-3 font-semibold">Year</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                {table.records.map((record) => (
+                  <tr class="even:bg-royal-50/50">
+                    <th scope="row" class="px-5 py-3 font-semibold text-royal-950">
+                      {record.event}
+                    </th>
+                    <td class="px-5 py-3 text-slate-600">{record.crew}</td>
+                    <td class="px-5 py-3 font-mono text-slate-800">{record.time}</td>
+                    <td class="px-5 py-3 text-slate-600">{record.year}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      ))
+    }
+
+    <p class="mt-12 text-sm text-slate-600">
+      Racing here soon? Records set at the Spring and Summer Regattas count —
+      <a href="/events/" class="font-semibold text-royal-700 underline-offset-4 hover:underline">
+        see the events page &rarr;
+      </a>
+    </p>
+  </section>
+</BaseLayout>

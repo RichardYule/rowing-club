@@ -15,37 +15,27 @@ const isActive = (href: string) =>
   href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
-<header class="sticky top-0 z-40 border-b border-river-100 bg-white/90 backdrop-blur">
+<header class="sticky top-0 z-40 border-b border-royal-100 bg-white/90 backdrop-blur">
   <nav
     class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6"
     aria-label="Main navigation"
   >
-    <!-- Logo / club name -->
-    <a href="/" class="flex items-center gap-2.5" aria-label={`${SITE.name} — home`}>
-      <svg
-        class="h-9 w-9 text-river-700"
-        viewBox="0 0 48 48"
-        fill="none"
-        aria-hidden="true"
-      >
-        <!-- Crossed oars mark -->
-        <path
-          d="M8 40 34 10m0 0 4-2m-4 2 2 4M40 40 14 10m0 0-4-2m4 2-2 4"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-        />
-        <path
-          d="M10 36c4 3 8 3 12 0m4 0c4 3 8 3 12 0"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          opacity="0.5"
-        />
-      </svg>
-      <span class="font-display text-lg font-bold tracking-tight text-river-900 sm:text-xl">
-        Tideway <span class="text-river-600">RC</span>
-      </span>
+    <!-- Club logo: crest on small screens, full lockup from sm: up -->
+    <a href="/" class="flex items-center" aria-label={`${SITE.name} — home`}>
+      <img
+        src="/images/brand/pcrc-crest.png"
+        alt=""
+        width="95"
+        height="105"
+        class="h-9 w-auto sm:hidden"
+      />
+      <img
+        src="/images/brand/pcrc-logo-lockup.png"
+        alt=""
+        width="288"
+        height="105"
+        class="hidden h-10 w-auto sm:block"
+      />
     </a>
 
     <!-- Desktop nav -->
@@ -59,8 +49,8 @@ const isActive = (href: string) =>
               class:list={[
                 'rounded-md px-3 py-2 text-sm font-medium transition-colors',
                 isActive(link.href)
-                  ? 'bg-river-50 text-river-800'
-                  : 'text-slate-600 hover:bg-slate-50 hover:text-river-700',
+                  ? 'bg-royal-50 text-royal-800'
+                  : 'text-slate-600 hover:bg-slate-50 hover:text-royal-700',
               ]}
             >
               {link.label}
@@ -71,7 +61,7 @@ const isActive = (href: string) =>
       <li>
         <a
           href="/membership"
-          class="ml-2 rounded-md bg-river-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-river-800"
+          class="ml-2 rounded-md bg-royal-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-royal-800"
         >
           Join us
         </a>
@@ -82,7 +72,7 @@ const isActive = (href: string) =>
     <button
       id="menu-toggle"
       type="button"
-      class="inline-flex items-center justify-center rounded-md p-2 text-river-800 hover:bg-river-50 md:hidden"
+      class="inline-flex items-center justify-center rounded-md p-2 text-royal-800 hover:bg-royal-50 md:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Toggle navigation menu"
@@ -99,7 +89,7 @@ const isActive = (href: string) =>
   </nav>
 
   <!-- Mobile nav panel -->
-  <div id="mobile-menu" class="hidden border-t border-river-100 md:hidden">
+  <div id="mobile-menu" class="hidden border-t border-royal-100 md:hidden">
     <ul class="space-y-1 px-4 py-3">
       {
         NAV_LINKS.map((link) => (
@@ -110,7 +100,7 @@ const isActive = (href: string) =>
               class:list={[
                 'block rounded-md px-3 py-2 text-base font-medium',
                 isActive(link.href)
-                  ? 'bg-river-50 text-river-800'
+                  ? 'bg-royal-50 text-royal-800'
                   : 'text-slate-600 hover:bg-slate-50',
               ]}
             >
@@ -122,7 +112,7 @@ const isActive = (href: string) =>
       <li class="pt-2">
         <a
           href="/membership"
-          class="block rounded-md bg-river-700 px-3 py-2.5 text-center text-base font-semibold text-white"
+          class="block rounded-md bg-royal-700 px-3 py-2.5 text-center text-base font-semibold text-white"
         >
           Join us
         </a>

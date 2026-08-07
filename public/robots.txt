@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tideway-rowing-club.pages.dev/sitemap-index.xml
+Sitemap: https://peterboroughcityrowing.co.uk/sitemap-index.xml

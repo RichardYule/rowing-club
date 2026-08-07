@@ -1,0 +1,44 @@
+---
+/**
+ * News index — every published post from the news content collection,
+ * newest first. Posts are Markdown files in src/content/news/;
+ * see docs/adding-news.md for the press secretary's guide.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import NewsCard from '../../components/NewsCard.astro';
+
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="News"
+  description="News from Peterborough City Rowing Club — race reports, club stories and announcements."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="News"
+        title="From the club"
+        intro="Race reports, club stories and announcements from the PCRC press secretary."
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+    {
+      posts.length > 0 ? (
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post) => <NewsCard post={post} />)}
+        </div>
+      ) : (
+        <p class="rounded-lg bg-royal-50 p-6 text-center text-slate-600">
+          No stories yet — check back soon, or follow us on social media.
+        </p>
+      )
+    }
+  </section>
+</BaseLayout>

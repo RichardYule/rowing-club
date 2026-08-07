@@ -1,0 +1,324 @@
+---
+/**
+ * Support the Club — sponsorship, volunteering, the completed extension
+ * project archive, and the 100 Club.
+ *
+ * Footer-only page per the IA (no nav slot): reached via the footer,
+ * the homepage banner, and contextual links from /events/ and /membership/.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABanner from '../components/CTABanner.astro';
+import SitePicture from '../components/SitePicture.astro';
+import { sponsors, sponsorshipOpportunities } from '../data/sponsors';
+import { regattaRoles } from '../data/volunteering';
+import volunteersImg from '../assets/images/racing-eight-2023.jpg';
+import demolitionImg from '../assets/images/clubhouse-demolition-2023.jpg';
+import brickImg from '../assets/images/buy-a-brick.jpg';
+
+const photoSizes = '(min-width: 1024px) 50vw, 100vw';
+---
+
+<BaseLayout
+  title="Support the Club"
+  description="Sponsor Peterborough City Rowing Club, volunteer at our regattas, or read how the Big Build became our new clubhouse extension."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Support the club"
+        title="Built by the people who turn up"
+        intro="PCRC is volunteer-run and community-funded. Whether you're a company looking to sponsor local sport, or a neighbour with a free morning, this page shows what your support makes possible."
+      />
+      <nav class="mt-8 flex flex-wrap justify-center gap-2" aria-label="Sections on this page">
+        {
+          [
+            ['#sponsorship', 'Sponsorship'],
+            ['#volunteering', 'Volunteering'],
+            ['#the-extension', 'The Extension'],
+            ['#100-club', '100 Club'],
+          ].map(([href, label]) => (
+            <a
+              href={href}
+              class="rounded-full border border-royal-200 bg-white px-4 py-1.5 text-sm font-semibold text-royal-700 transition-colors hover:bg-royal-100"
+            >
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+
+  <!-- Sponsorship -->
+  <section id="sponsorship" class="scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Sponsorship</h2>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              Sponsoring PCRC puts your name in front of hundreds of rowers,
+              families and spectators at our two home regattas — and behind
+              something genuinely good: affordable, coached sport for
+              Peterborough's young people.
+            </p>
+            <p>
+              There's no fixed rate card. Some sponsors give equipment money,
+              some fund specific boats or blades, and some send teams of
+              volunteers. Tell us what you'd like to achieve and we'll shape
+              something that works.
+            </p>
+          </div>
+          <h3 class="mt-8 font-display text-lg font-bold text-royal-900">
+            Ways to sponsor
+          </h3>
+          <ul class="mt-4 space-y-2.5">
+            {
+              sponsorshipOpportunities.map((item) => (
+                <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                  <svg
+                    class="mt-0.5 h-4 w-4 shrink-0 text-royal-600"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+                  </svg>
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+          <p class="mt-8">
+            <a
+              href="/contact/?topic=sponsorship"
+              class="inline-block rounded-md bg-royal-700 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-royal-800"
+            >
+              Talk to us about sponsorship
+            </a>
+          </p>
+        </div>
+
+        <!-- Sponsor stories: show what sponsorship achieves -->
+        <div>
+          <h3 class="font-display text-lg font-bold text-royal-900">
+            What sponsorship looks like
+          </h3>
+          <div class="mt-4 space-y-5">
+            {
+              sponsors.map((sponsor) => (
+                <figure class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+                  {sponsor.logo && (
+                    <img
+                      src={sponsor.logo}
+                      alt={`${sponsor.name} logo`}
+                      class="mb-4 h-10 w-auto"
+                      loading="lazy"
+                    />
+                  )}
+                  <blockquote class="text-sm leading-relaxed text-slate-700">
+                    {sponsor.story}
+                  </blockquote>
+                  <figcaption class="mt-4 text-sm font-semibold text-royal-800">
+                    {sponsor.url ? (
+                      <a
+                        href={sponsor.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="underline-offset-4 hover:underline"
+                      >
+                        {sponsor.name}
+                        <span class="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      sponsor.name
+                    )}
+                    <span class="font-normal text-slate-500"> · {sponsor.year}</span>
+                  </figcaption>
+                </figure>
+              ))
+            }
+            <p class="rounded-lg bg-royal-50 p-5 text-sm text-slate-600">
+              <strong class="text-royal-800">Your company here?</strong> We're
+              building our sponsor family now — early sponsors will help shape
+              how recognition works, from hull names to regatta banners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteering -->
+  <section id="volunteering" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">Volunteering</h2>
+      <div class="mt-4 max-w-3xl space-y-4 leading-relaxed text-slate-700">
+        <p>
+          Our regattas run on volunteers — around thirty jobs on every race day.
+          Most need no experience at all: we'll show you the ropes, pair you with
+          someone who's done it before, and keep you fed and watered.
+        </p>
+        <p>
+          You don't need to be a member to help. Students, parents, partners and
+          neighbours all welcome.
+        </p>
+      </div>
+
+      <SitePicture
+        src={volunteersImg}
+        alt="Crews and volunteers on the water on race day"
+        sizes="(min-width: 1024px) 72rem, 100vw"
+        widths={[768, 1200, 1600]}
+        class="mt-8 aspect-[21/9] w-full rounded-xl object-cover shadow-sm"
+      />
+
+      <h3 class="mt-10 font-display text-lg font-bold text-royal-900">
+        Regatta-day roles
+      </h3>
+      <ul class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          regattaRoles.map((role) => (
+            <li class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p class="font-display text-base font-bold text-royal-950">{role.name}</p>
+              <p class="mt-1.5 text-sm leading-relaxed text-slate-600">{role.description}</p>
+              {role.note && (
+                <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-amber-700">
+                  {role.note}
+                </p>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-10 max-w-3xl space-y-4 leading-relaxed text-slate-700">
+        <h3 class="font-display text-lg font-bold text-royal-900">
+          Beyond regatta days
+        </h3>
+        <p>
+          There's no fixed rota outside race days — help is more ad hoc:
+          working parties to get the course ready, painting and maintenance
+          days (the railings around the new extension were stripped by a
+          volunteer team from Bridewell), and lending a hand at club socials
+          and fundraising events.
+        </p>
+        <p>
+          Register your interest and we'll contact you when something comes up.
+        </p>
+        <p class="pt-2">
+          <a
+            href="/contact/?topic=volunteering"
+            class="inline-block rounded-md bg-royal-700 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-royal-800"
+          >
+            Volunteer with us
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Extension (completed Big Build archive) -->
+  <section id="the-extension" class="scroll-mt-20 border-t border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-600">
+            Completed · opened 1 August 2026
+          </p>
+          <h2 class="mt-2 font-display text-2xl font-bold text-royal-950">
+            The Big Build became… the extension
+          </h2>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              What started in 2018 as "The Big Build" ended as a smarter, smaller
+              build — and it's done. The tired conservatory has been replaced by a
+              <strong> large multi-purpose room</strong>, and the <strong>kitchen
+              has been extended</strong> to match. The extension was officially
+              opened on 1 August 2026.
+            </p>
+            <p>
+              The new room hosts erg and circuit training, squad briefings,
+              Wednesday club nights and community bookings — and the bigger
+              kitchen finally copes with regatta-day demand.
+            </p>
+            <p>
+              Thank you to everyone who bought a brick, organised fundraising
+              events, gave materials or expertise, or picked up a paintbrush.
+              This page is the permanent record of what that generosity built.
+            </p>
+          </div>
+          <p class="mt-6 text-sm">
+            <a
+              href="/lake-hire/"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Interested in hiring the new room? See lake & facility hire &rarr;
+            </a>
+          </p>
+        </div>
+        <div class="space-y-6">
+          <figure>
+            <SitePicture
+              src={demolitionImg}
+              alt="The old clubhouse conservatory being demolished in 2023 to make way for the extension"
+              sizes={photoSizes}
+              class="aspect-[4/3] w-full rounded-xl object-cover shadow-sm"
+            />
+            <figcaption class="mt-2 text-sm text-slate-500">
+              2023: the old conservatory comes down.
+            </figcaption>
+          </figure>
+          <figure>
+            <SitePicture
+              src={brickImg}
+              alt="An engraved brick bought by a supporter of the Buy a Brick appeal"
+              sizes={photoSizes}
+              class="aspect-[4/3] w-full rounded-xl object-cover shadow-sm"
+            />
+            <figcaption class="mt-2 text-sm text-slate-500">
+              Buy a Brick — every name helped build it.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 100 Club -->
+  <section id="100-club" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">The 100 Club</h2>
+      <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+        <p>
+          Our long-running monthly prize draw: buy a number, and half the pot
+          goes out as prizes while the other half funds the club. Members,
+          alumni and supporters all take part — it's a small, easy way to keep
+          the blades turning.
+        </p>
+        <p>
+          To join or renew, ask at the bar on a Wednesday club night or send us
+          a message and we'll put you in touch with the organiser.
+        </p>
+      </div>
+      <p class="mt-6">
+        <a
+          href="/contact/?topic=other"
+          class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+        >
+          Ask about the 100 Club &rarr;
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Every hour and every pound goes into rowing"
+    text="Sponsorship and volunteering keep course fees low, boats maintained and juniors racing. Thank you for being part of it."
+    buttonLabel="Get involved"
+    buttonHref="/contact/?topic=sponsorship"
+  />
+</BaseLayout>

@@ -1,0 +1,274 @@
+---
+/**
+ * Squads — one page, five anchor sections (#men, #women, #juniors,
+ * #development, #u3a), replacing the five thin squad pages on the old site.
+ * Photos are real club photos (see docs/photos.md for the inventory).
+ *
+ * TODO: confirm training times and squad contacts with the captains.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABanner from '../components/CTABanner.astro';
+import SitePicture from '../components/SitePicture.astro';
+import menImg from '../assets/images/squad-men-eight.jpg';
+import womenImg from '../assets/images/squad-women-quad.jpg';
+import juniorsImg from '../assets/images/juniors-nationals.jpg';
+import developmentImg from '../assets/images/racing-home-lake.jpg';
+import u3aImg from '../assets/images/history-50th-reunion.jpg';
+
+const photoClass = 'aspect-[4/3] w-full rounded-xl object-cover shadow-sm';
+const photoSizes = '(min-width: 1024px) 50vw, 100vw';
+---
+
+<BaseLayout
+  title="Squads"
+  description="Men's, women's, junior, development and U3A rowing at Peterborough City Rowing Club — find the squad that fits you."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Squads"
+        title="A squad for every rower"
+        intro="From first strokes after a Learn to Row course to national-level racing, every member rows in a coached squad. Session times vary by squad and season — get in touch and we'll point you at the right one."
+      />
+      <!-- In-page navigation between squad sections -->
+      <nav class="mt-8 flex flex-wrap justify-center gap-2" aria-label="Squads on this page">
+        {
+          [
+            ['#men', 'Men'],
+            ['#women', 'Women'],
+            ['#juniors', 'Juniors'],
+            ['#development', 'Development'],
+            ['#u3a', 'U3A'],
+          ].map(([href, label]) => (
+            <a
+              href={href}
+              class="rounded-full border border-royal-200 bg-white px-4 py-1.5 text-sm font-semibold text-royal-700 transition-colors hover:bg-royal-100"
+            >
+              {label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+
+  <!-- Men's squad -->
+  <section id="men" class="scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Men's Squad</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Senior racing, all standards
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              The men's squad races at regattas and head races across the region and
+              beyond — including our own Spring and Summer Regattas on the home lake.
+              Crews are put together to match ambition, from first-regatta fours to
+              experienced eights.
+            </p>
+            <p>
+              Rowed or sculled before? You're welcome to come down and try a session
+              before committing to anything — a coach will help you find the right
+              crew.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=join"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Ask about joining the men's squad &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={menImg}
+          alt="A PCRC eight racing at the Peterborough Jubilee Regatta"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Women's squad -->
+  <section id="women" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Women's Squad</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Senior racing, all standards
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              The women's squad is one of the most active in the club, racing through
+              both the regatta and head-race seasons. New rowers typically arrive from
+              our Learn to Row courses via the Development Squad; experienced rowers
+              can join straight in.
+            </p>
+            <p>
+              Training mixes water sessions on the lake with erg and strength work in
+              the clubhouse gym.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=join"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Ask about joining the women's squad &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={womenImg}
+          alt="A PCRC women's crew racing at St Neots Regatta"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Junior squad -->
+  <section id="juniors" class="scroll-mt-20 border-t border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Junior Squad</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Ages 11–18
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              Our juniors train after school and at weekends, progressing from
+              stable training boats to racing at junior regattas — often on home
+              water at Thorpe Meadows. All sessions are coached, with a safety
+              launch on the water.
+            </p>
+            <p>
+              New juniors usually start on a Junior Learn to Row course (see the <a href="/learn-to-row/#junior" class="font-medium text-royal-700 underline-offset-4 hover:underline">Learn to Row page</a>),
+              but experienced juniors transferring from other clubs are very welcome.
+            </p>
+          </div>
+
+          <!-- Safeguarding callout — kept prominent for parents (IA requirement) -->
+          <aside class="mt-6 rounded-lg border border-royal-200 bg-royal-50 p-5">
+            <h3 class="font-display text-base font-bold text-royal-900">
+              For parents and guardians
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-700">
+              All junior coaches and regular volunteers are DBS-checked, and the club
+              follows British Rowing safeguarding guidance. Our <a href="/welfare" class="font-semibold text-royal-700 underline-offset-4 hover:underline">welfare & safeguarding page</a> explains who to contact with any concern, big or small.
+            </p>
+          </aside>
+
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=juniors"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Ask about junior rowing &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={juniorsImg}
+          alt="PCRC juniors racing at the National Schools Regatta"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Development squad -->
+  <section id="development" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Development Squad</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            The bridge from Learn to Row to racing
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              Fresh from a Learn to Row course — or returning to the sport after a
+              break? The Development Squad is where technique becomes second nature.
+              Sessions build boat-moving skills and fitness at a steady pace, with a
+              first regatta as the goal rather than the starting point.
+            </p>
+            <p>
+              Most rowers spend six to twelve months here before moving into the
+              senior squads.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=join"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Ask about the development squad &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={developmentImg}
+          alt="A PCRC crew racing side by side in the summer season"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- U3A -->
+  <section id="u3a" class="scroll-mt-20 border-t border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">U3A Rowing</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Daytime recreational rowing with the U3A
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              In partnership with the local University of the Third Age, we run
+              friendly daytime sessions for older adults — rowing for fitness,
+              fresh air and good company, in stable boats with coaching support.
+            </p>
+            <p>
+              No rowing experience is needed, and sessions run at a gentler pace
+              than squad training.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=learn-to-row"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Ask about U3A rowing &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={u3aImg}
+          alt="Members and friends at the club's 50th-anniversary reunion row"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Not sure which squad fits?"
+    text="Tell us a bit about yourself and we'll point you in the right direction — no commitment needed."
+    buttonLabel="Get in touch"
+    buttonHref="/contact/?topic=join"
+  />
+</BaseLayout>

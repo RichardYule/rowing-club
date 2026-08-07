@@ -1,0 +1,79 @@
+---
+/**
+ * News article page — renders one Markdown post from the news collection.
+ */
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SitePicture from '../../components/SitePicture.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'news'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+// Social cards need a plain URL, not an optimised image object.
+const ogImage = post.data.image?.src;
+
+const published = new Intl.DateTimeFormat('en-GB', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(post.data.pubDate);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={ogImage}
+>
+  <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+    <p class="text-xs font-bold uppercase tracking-[0.2em] text-royal-600">
+      <a href="/news/" class="underline-offset-4 hover:underline">&larr; All news</a>
+    </p>
+    <h1
+      class="mt-4 font-display text-3xl font-extrabold tracking-tight text-royal-950 sm:text-4xl"
+    >
+      {post.data.title}
+    </h1>
+    <p class="mt-3 text-sm text-slate-500">
+      <time datetime={post.data.pubDate.toISOString()}>{published}</time>
+       · {post.data.author}
+    </p>
+
+    {
+      post.data.image && (
+        <SitePicture
+          src={post.data.image}
+          alt={post.data.imageAlt ?? ''}
+          sizes="(min-width: 768px) 48rem, 100vw"
+          widths={[768, 1200]}
+          class="mt-8 w-full rounded-xl border border-slate-200"
+        />
+      )
+    }
+
+    <div class="article-content mt-10">
+      <Content />
+    </div>
+
+    <p class="mt-14 border-t border-slate-200 pt-8 text-sm text-slate-600">
+      Questions about this story, or a story of your own to tell? <a
+        href="/contact/?topic=press"
+        class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+      >
+        Contact the press secretary &rarr;
+      </a>
+    </p>
+  </article>
+</BaseLayout>

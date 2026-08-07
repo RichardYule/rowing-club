@@ -1,0 +1,171 @@
+---
+/**
+ * Learn to Row — adult courses, junior courses and learning to coach,
+ * as anchor sections on one page (#adult, #junior, #coaching), with a
+ * single enquiry path (#enquiry → the consolidated contact form).
+ * Photos are real club photos (see docs/photos.md).
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABanner from '../components/CTABanner.astro';
+import SitePicture from '../components/SitePicture.astro';
+import adultImg from '../assets/images/learn-to-row-adults.jpg';
+import juniorImg from '../assets/images/juniors-podium.jpg';
+import coachingImg from '../assets/images/coaching-launch.jpg';
+
+const photoClass = 'aspect-[4/3] w-full rounded-xl object-cover shadow-sm';
+const photoSizes = '(min-width: 1024px) 50vw, 100vw';
+---
+
+<BaseLayout
+  title="Learn to Row"
+  description="Learn to row at Peterborough City Rowing Club — six-week adult and junior courses on the sheltered lake at Thorpe Meadows. No experience needed."
+>
+  <section class="bg-royal-50">
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <SectionHeading
+        eyebrow="Learn to Row"
+        title="Never held an oar? Perfect."
+        intro="Our beginner courses assume absolutely no experience. Coaches, boats and blades are all provided — you just need to be able to swim 50 metres and bring a sense of humour."
+      />
+    </div>
+  </section>
+
+  <!-- Adult courses -->
+  <section id="adult" class="scroll-mt-20">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Adult Learn to Row</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Six weeks · twelve coached sessions · no experience needed
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              Courses run through the spring and summer in small groups, starting on
+              the club's stable training boats on the sheltered lake at Thorpe
+              Meadows. By the end of the course you'll be rowing confidently in a
+              crew boat — and wondering why you didn't start years ago.
+            </p>
+            <p>
+              After the course, graduates move into the <a href="/squads/#development" class="font-medium text-royal-700 underline-offset-4 hover:underline">Development Squad</a> to keep improving. See the <a href="/membership/" class="font-medium text-royal-700 underline-offset-4 hover:underline">membership page</a> for the current course fee, and the <a href="/events/#calendar" class="font-medium text-royal-700 underline-offset-4 hover:underline">events calendar</a> for the next intake date.
+            </p>
+          </div>
+        </div>
+        <SitePicture
+          src={adultImg}
+          alt="New rowers at a club event on the lake at Thorpe Meadows"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Junior courses -->
+  <section id="junior" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Junior Learn to Row</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Ages 11–18
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              Junior courses introduce young people to rowing in a safe, coached
+              environment — usually in school holidays or as term-time weekly
+              sessions. All coaches and regular volunteers working with juniors are
+              DBS-checked, and every outing has a safety launch alongside.
+            </p>
+            <p>
+              Parents: our <a href="/welfare" class="font-medium text-royal-700 underline-offset-4 hover:underline">welfare & safeguarding page</a> sets out how we look after juniors, and who to talk to with any
+              question or concern.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=juniors"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Ask about junior courses &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={juniorImg}
+          alt="PCRC juniors representing the Eastern Region at the Junior Inter-Regional Regatta"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Learn to coach -->
+  <section id="coaching" class="scroll-mt-20 border-t border-slate-100">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div class="grid items-center gap-8 lg:grid-cols-2">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-royal-950">Learn to Coach</h2>
+          <p class="mt-1 text-sm font-semibold uppercase tracking-wider text-royal-600">
+            Give something back — from the launch
+          </p>
+          <div class="mt-4 space-y-4 leading-relaxed text-slate-700">
+            <p>
+              Every PCRC coach is a volunteer, and most started as ordinary members.
+              If you'd like to help others learn — whether you're an experienced
+              rower or a parent who's spent years on the bank — we'll support you
+              through British Rowing's coaching pathway, starting as an assistant
+              alongside our qualified coaches.
+            </p>
+            <p>
+              Coaching courses, first-aid training and launch-driving assessments
+              are all arranged through the club.
+            </p>
+          </div>
+          <p class="mt-6">
+            <a
+              href="/contact/?topic=volunteering"
+              class="font-semibold text-royal-700 underline-offset-4 hover:underline"
+            >
+              Volunteer as a coach &rarr;
+            </a>
+          </p>
+        </div>
+        <SitePicture
+          src={coachingImg}
+          alt="A PCRC coach being interviewed about the club's inclusive rowing programme"
+          sizes={photoSizes}
+          class={photoClass}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Enquiry — the anchor the old "Sign up for a course" form redirects to -->
+  <section id="enquiry" class="scroll-mt-20 border-t border-slate-100 bg-royal-50/60">
+    <div class="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6">
+      <h2 class="font-display text-2xl font-bold text-royal-950">
+        Book a place or ask a question
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-slate-600">
+        One quick message is all it takes — tell us which course you're
+        interested in and we'll reply with dates and availability.
+      </p>
+      <a
+        href="/contact/?topic=learn-to-row"
+        class="mt-6 inline-block rounded-md bg-royal-700 px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-royal-800"
+      >
+        Enquire about a course
+      </a>
+    </div>
+  </section>
+
+  <CTABanner
+    heading="Want to see the club first?"
+    text="Come down on a Saturday morning — watch the squads train, have a coffee in the new clubhouse, and meet the coaches."
+    buttonLabel="Plan a visit"
+    buttonHref="/contact/"
+  />
+</BaseLayout>

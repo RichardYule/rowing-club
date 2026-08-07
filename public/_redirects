@@ -1,0 +1,28 @@
+# Redirects from the old WordPress site (see docs/information-architecture.md).
+# Cloudflare serves these for the static site.
+
+/about-us/                    /about/                  301
+/about-us/club-history/       /about/#history          301
+/about-us/facilities/         /about/#facilities       301
+/about-us/social-activities/  /about/#social           301
+/about-us/membership/         /membership/             301
+/about-us/club-policies/      /policies/               301
+/about-us/safety-welfare/     /welfare/                301
+/about-us/clothing/           /membership/#kit         301
+/about-us/100-club/           /support/#100-club       301
+/squads/mens-squad/           /squads/#men             301
+/squads/womens-squad/         /squads/#women           301
+/squads/junior-squad/         /squads/#juniors         301
+/squads/development-squad/    /squads/#development     301
+/squads/u3a-rowing/           /squads/#u3a             301
+/squads/join-form/            /membership/             301
+/learn-to-row-adult/          /learn-to-row/#adult     301
+/learn-to-row-junior/         /learn-to-row/#junior    301
+/learn-to-coach/              /learn-to-row/#coaching  301
+/learn-to-row-form/           /learn-to-row/#enquiry   301
+/events/timetable/            /events/#calendar        301
+/events/course-records-500m/  /events/course-records/#500m   301
+/events/course-records-1000m/ /events/course-records/#1000m  301
+/the-big-build/               /support/#the-extension  301
+/the-big-build/buy-a-brick/   /support/#the-extension  301
+/the-big-build/our-building-plans/ /support/#the-extension  301

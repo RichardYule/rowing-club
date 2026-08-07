@@ -1,5 +1,9 @@
 /**
  * Typed membership tiers shown on /membership.
+ *
+ * TODO: confirm current subscription rates with the treasurer.
+ * Per club decision there is deliberately NO social tier here —
+ * existing social members are served via /about/#social instead.
  */
 
 export interface MembershipTier {
@@ -15,40 +19,40 @@ export interface MembershipTier {
 export const membershipTiers: MembershipTier[] = [
   {
     name: 'Learn to Row',
-    price: '£99',
+    price: '£120',
     blurb: 'A six-week course for complete beginners.',
     features: [
       'Twelve coached sessions',
       'All equipment provided',
-      'Small groups of eight',
-      'Free taster session first',
-      'Pathway into club squads',
+      'Small groups on a safe, sheltered lake',
+      'No experience needed',
+      'Pathway into the Development Squad',
     ],
   },
   {
-    name: 'Full Membership',
-    price: '£42/mo',
-    blurb: 'Unlimited rowing for experienced athletes.',
+    name: 'Senior',
+    price: '£38/mo',
+    blurb: 'Full rowing membership for adults.',
     features: [
       'Unlimited water sessions',
       'Coached squad training',
       'Gym and erg room access',
-      'Regatta entry support',
-      'Boat racking included',
-      'Guest passes for family',
+      'Regatta entries organised for you',
+      'Boat racking available',
+      'Use of the new multi-purpose room',
     ],
     featured: true,
   },
   {
-    name: 'Junior & Student',
-    price: '£18/mo',
-    blurb: 'Ages 11–18 and full-time students.',
+    name: 'Junior',
+    price: '£15/mo',
+    blurb: 'Ages 11–18, from first strokes to racing.',
     features: [
       'Dedicated junior coaching',
-      'Three squad sessions weekly',
-      'Safety-certified launches',
-      'School holiday camps',
-      'DBS-checked volunteers',
+      'Squad sessions after school and at weekends',
+      'Safety launches with every outing',
+      'Racing at junior regattas',
+      'DBS-checked coaches and volunteers',
     ],
   },
 ];

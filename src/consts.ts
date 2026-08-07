@@ -5,26 +5,31 @@
  */
 
 export const SITE = {
-  name: 'Tideway Rowing Club',
-  tagline: 'On the water at dawn since 1892',
+  name: 'Peterborough City Rowing Club',
+  shortName: 'Peterborough City RC',
+  tagline: 'Rowing for Peterborough on the lake at Thorpe Meadows',
   description:
-    'Tideway Rowing Club is a friendly, competitive rowing club on the Thames. ' +
-    'We offer learn-to-row courses, junior and masters squads, and racing at regattas across the UK.',
-  url: 'https://tideway-rowing-club.pages.dev',
+    'Peterborough City Rowing Club is a friendly, competitive club rowing on the purpose-built ' +
+    'lake at Thorpe Meadows. Learn-to-row courses, junior and senior squads, and two home regattas a year.',
+  url: 'https://peterboroughcityrowing.co.uk',
   locale: 'en_GB',
-  email: 'hello@tidewayrc.example',
-  phone: '+44 20 7946 0018',
-  founded: 1892,
+  // TODO: confirm the public enquiry inbox before launch
+  email: 'enquiries@peterboroughcityrowing.co.uk',
+  // TODO: add a public phone number if the club wants one published
+  phone: null as string | null,
+  // TODO: confirm the founding year with the club historian
+  founded: 1948,
   address: {
-    street: 'Boathouse Lane, Embankment',
-    city: 'London',
-    postcode: 'SW15 1LB',
+    street: 'The Boathouse, Thorpe Meadows',
+    city: 'Peterborough',
+    postcode: 'PE3 6LN',
     country: 'United Kingdom',
   },
   social: {
-    instagram: 'https://instagram.com/tidewayrc',
-    facebook: 'https://facebook.com/tidewayrc',
-    strava: 'https://strava.com/clubs/tidewayrc',
+    // TODO: confirm the club's real social handles
+    instagram: 'https://instagram.com/peterboroughcityrc',
+    facebook: 'https://facebook.com/peterboroughcityrowingclub',
+    strava: 'https://strava.com/clubs/peterboroughcityrc',
   },
 } as const;
 
@@ -33,10 +38,22 @@ export interface NavLink {
   href: string;
 }
 
+/** Primary nav — flat, no dropdowns. Home is reached via the logo. */
 export const NAV_LINKS: NavLink[] = [
-  { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
-  { label: 'Membership', href: '/membership' },
+  { label: 'Squads', href: '/squads' },
+  { label: 'Learn to Row', href: '/learn-to-row' },
   { label: 'Events', href: '/events' },
+  { label: 'News', href: '/news' },
   { label: 'Contact', href: '/contact' },
+];
+
+/** Footer-only utility pages (not in the primary nav, per the IA). */
+export const UTILITY_LINKS: NavLink[] = [
+  { label: 'Support the club', href: '/support' },
+  { label: 'Welfare & safeguarding', href: '/welfare' },
+  { label: 'Club policies', href: '/policies' },
+  { label: 'Lake & facility hire', href: '/lake-hire' },
+  { label: 'Crew entries', href: '/crew-entries' },
+  { label: 'Privacy policy', href: '/privacy-policy' },
 ];
