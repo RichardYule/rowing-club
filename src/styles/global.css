@@ -10,6 +10,55 @@
  */
 @import 'tailwindcss';
 
+/* Self-hosted, subsetted fonts — only the ~102 characters used on the site.
+   See docs/brand-kit.md for the type rationale; re-subset with:
+   pyftsubset <source.woff2> --output-file=<out.woff2> --flavor=woff2 \
+     --unicodes="U+0020-007F,U+00A0-00FF,U+2013-2014,U+2018-201D,U+2026,U+2192" \
+     --layout-features='*' --no-hinting --desubroutinize
+*/
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/montserrat-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/montserrat-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('../assets/fonts/montserrat-800.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/source-sans-3-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/source-sans-3-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../assets/fonts/source-sans-3-600.woff2') format('woff2');
+}
+
 @theme {
   /* Royal Blue scale — anchored on the brand colour at 600.
      600 = #0367A6 (sampled from the club crest); 900 = crest navy. */
