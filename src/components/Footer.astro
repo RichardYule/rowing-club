@@ -111,8 +111,19 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="border-t border-royal-900">
-    <p class="mx-auto max-w-6xl px-4 py-5 text-xs text-royal-400 sm:px-6">
-      &copy; {year} {SITE.name}. Affiliated to British Rowing. All rights reserved.
-    </p>
+    <div class="mx-auto flex max-w-6xl flex-col items-start gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p class="text-xs text-royal-400">
+        &copy; {year} {SITE.name}. All rights reserved.
+      </p>
+      <div class="flex items-center gap-3">
+        <img
+          src="/images/brand/british-rowing-affiliated.png"
+          alt="Affiliated to British Rowing"
+          width="165"
+          height="105"
+          class="h-8 w-auto"
+        />
+      </div>
+    </div>
   </div>
 </footer>
