@@ -14,7 +14,7 @@ export const SITE = {
   url: 'https://peterboroughcityrowing.co.uk',
   locale: 'en_GB',
   // TODO: confirm the public enquiry inbox before launch
-  email: 'enquiries@peterboroughcityrowing.co.uk',
+  email: 'enquiries@riuy.com',
   // TODO: add a public phone number if the club wants one published
   phone: null as string | null,
   // TODO: confirm the founding year with the club historian

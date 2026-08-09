@@ -14,10 +14,10 @@ export interface Contact {
 }
 
 export const contacts: Contact[] = [
-  { role: 'Membership Secretary', email: 'membership@peterboroughcityrowing.co.uk' },
-  { role: 'Learn to Row Co-ordinator', email: 'learntorow@peterboroughcityrowing.co.uk' },
-  { role: 'Junior Co-ordinator', email: 'juniors@peterboroughcityrowing.co.uk' },
-  { role: 'Welfare Officer', email: 'welfare@peterboroughcityrowing.co.uk' },
-  { role: 'Press Secretary', email: 'press@peterboroughcityrowing.co.uk' },
-  { role: 'Sponsorship', email: 'sponsorship@peterboroughcityrowing.co.uk' },
+  { role: 'Membership Secretary', email: 'membership@riuy.com' },
+  { role: 'Learn to Row Co-ordinator', email: 'learntorow@riuy.com' },
+  { role: 'Junior Co-ordinator', email: 'juniors@riuy.com' },
+  { role: 'Welfare Officer', email: 'welfare@riuy.com' },
+  { role: 'Press Secretary', email: 'press@riuy.com' },
+  { role: 'Sponsorship', email: 'sponsorship@riuy.com' },
 ];
