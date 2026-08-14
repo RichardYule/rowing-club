@@ -8,6 +8,18 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Project tracking
+
+Improvement work is tracked in-repo:
+
+- `docs/roadmap.md` — the single to-do list (Now/Next/Later/Done, stable `R-xx` IDs).
+- `docs/decisions.md` — decision log (`D-xx`).
+- `docs/reviews/` — competitor-site research; findings (`F-xx`) feed roadmap items.
+
+At the start of a session, check the roadmap for current priorities. When work
+finishes, move its roadmap item to Done (with date/commit); when a significant
+decision is made, log it in `docs/decisions.md`.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build

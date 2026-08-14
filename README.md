@@ -11,6 +11,13 @@ The club brand (logo, Royal Blue `#0367A6` / Old Gold `#CFB53B` palette,
 fonts and usage rules) is documented in
 [`docs/brand-kit.md`](docs/brand-kit.md).
 
+Planned improvements and their progress are tracked in
+[`docs/roadmap.md`](docs/roadmap.md) (the single to-do list, with stable
+`R-xx` IDs); significant decisions are recorded in
+[`docs/decisions.md`](docs/decisions.md) (`D-xx`). Research into other
+rowing clubs' websites lives in [`docs/reviews/`](docs/reviews/README.md) —
+its findings (`F-xx`) feed new roadmap items.
+
 ## Commands
 
 | Command | Action |
@@ -34,7 +41,10 @@ everything can be done in the GitHub web interface. **Step-by-step guide:
 ├── astro.config.mjs        # Astro config: site URL, sitemap, Tailwind (Vite plugin)
 ├── tsconfig.json           # Strict TypeScript (extends astro/tsconfigs/strict)
 ├── wrangler.jsonc          # Cloudflare static-assets deployment config
-├── docs/                   # IA audit + the news-authoring guide
+├── docs/                   # IA audit, roadmap, decision log, guides
+│   ├── roadmap.md          # Improvement backlog (Now/Next/Later/Done, R-xx)
+│   ├── decisions.md        # Decision log (D-xx)
+│   └── reviews/            # Competitor-site reviews (matrix.csv, findings F-xx)
 ├── public/                 # Static assets served as-is
 │   ├── _headers            # Cloudflare cache rules (immutable /_astro assets)
 │   ├── _redirects          # 301s from the old WordPress URLs
