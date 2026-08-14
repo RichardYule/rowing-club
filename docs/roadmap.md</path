@@ -1,0 +1,52 @@
+# Roadmap
+
+The single to-do list for site improvements. Every piece of planned work lives
+here with a stable ID (`R-xx`) so decisions, reviews and commits can reference it.
+
+**How to use it:**
+
+- Columns are **Now** (actively being worked on), **Next** (queued), **Later**
+  (good ideas, deliberately not started) and **Done**.
+- Each item: ID · title · status · notes (evidence, links, acceptance criteria).
+- When work starts, move the item to **Now**. When finished, move it to **Done**
+  with the date and the commit/PR that shipped it.
+- Anything that changes direction gets an entry in
+  [`decisions.md`](decisions.md); anything that inspires an item gets cited
+  (e.g. "evidence: F-03" from [`reviews/findings.md`](reviews/findings.md)).
+- Keep IDs stable — never renumber. If an item is abandoned, mark it
+  `Abandoned` with a reason rather than deleting it.
+
+## Now
+
+| ID | Item | Notes |
+| --- | --- | --- |
+| R-02 | Capture and prioritise the site owner's improvement ideas | Owner has ideas not yet recorded anywhere. Add as new `R-xx` items, agree Now/Next/Later placement. |
+
+## Next
+
+| ID | Item | Notes |
+| --- | --- | --- |
+| R-03 | Confirm `consts.ts` TODOs with the committee | Public enquiry inbox, public phone number (or not), founding year (currently 1948, unconfirmed), real social handles. See `src/consts.ts`. |
+| R-04 | Enquiry form backend: Cloudflare Pages Function + Turnstile | Replace the `mailto:` fallback with a Pages Function (e.g. `/api/enquiry`) and Cloudflare Turnstile anti-spam. See the comment in `src/components/EnquiryForm.astro`. Needs an email-sending service (e.g. Resend/Mailgun) or Cloudflare Email Workers decision. |
+| R-05 | Migrate remaining old WordPress news posts | 128 posts existed on the old site; only 2 migrated so far. Migrate a curated selection (recent + significant); leave the rest archived. |
+| R-06 | `llms.txt` + AI-scraper policy decision | Decide whether to publish `llms.txt` for AI answer engines and whether to allow/block AI training scrapers via `robots.txt` / Cloudflare bot rules. See the "Non-human users" section of `information-architecture.md`. |
+| R-09 | Joining & membership presentation upgrades | Evidence: F-01, F-02, F-05, F-12, F-15. (a) Lead squad sections with countable achievements, not adjectives; (b) capacity signalling (badge/strike-through) on full membership categories; (c) pricing-card fee presentation with monthly alongside annual; (d) audience-split "Get involved" cards (beginner / experienced / cox); (e) explicit cox recruitment path. |
+| R-10 | Learn-to-row page: structure, capacity honesty, waiting list | Evidence: F-03, F-06, F-11, F-13, F-14. (a) Present the course as numbered steps (ergo → water → novice sessions → pathway); (b) state capacity/wait honestly ("2026 full — watch for 2027"); (c) waiting-list capture when full; (d) scope statements for what PCRC does *not* offer; (e) consider an indoor-rowing taster product as a funnel. |
+
+## Later
+
+| ID | Item | Notes |
+| --- | --- | --- |
+| R-07 | Results Phase 2: unified results archive | Normalise results from rowresults.co.uk, regatta.time-team.nl and raceleader.co.uk into one searchable archive (event → race → crew → time). Needs a data model, per-source adapters, caching vs build-time decisions. Deliberately deferred — see decision D-04 in `decisions.md`. |
+| R-08 | Per-event pages for hosted regattas | The IA keeps this door open ("per-event pages later if needed") once more than one hosted event needs draw/schedule/results detail. |
+| R-11 | Lake/water status page | Evidence: F-04 (Wallingford's river-status nav slot). PCRC equivalent: lake status (racing/open/closed) — needs a low-effort update path for the water secretary. |
+| R-12 | Visiting-crews page + commercial-arm separation | Evidence: F-07, F-08, F-10. (a) "Visiting crews" page (parking, boathouse access, course map) serving lake-hire clients; (b) decide whether hosted events / lake hire eventually warrant their own subsite or stay integrated. |
+| R-13 | Support & trust polish | Evidence: F-09, F-17, F-18. (a) Donate/support link in main nav once fundraising exists; (b) photographer credits in footer; (c) publish recruitment posts with salary bands when the club hires. |
+| R-14 | Members portal decision | Evidence: F-16 (Lea RC's dedicated portal). Decide whether PCRC needs member tools beyond the public site (event sign-up, directory) and whether that's a section, a portal, or ClubHub/British Rowing. Depends on R-04 form backend. |
+
+## Done
+
+| ID | Item | Shipped | Notes |
+| --- | --- | --- | --- |
+| R-00 | Initial site build (16 URLs from 34 WordPress pages) | Aug 2026 | IA, content, components, data files, redirects, news collection. See `information-architecture.md`. |
+| R-01 | Competitor review of other rowing-club websites | Aug 2026 | 7 sites reviewed (PCRC current + new, Wallingford, Nottingham, Thames, Leeds, Lea). Output: `reviews/matrix.csv`, one note per club in `reviews/clubs/`, 18 findings (F-01…F-18) in `reviews/findings.md` feeding R-09…R-14. |
