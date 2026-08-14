@@ -13,15 +13,18 @@ ID (`F-xx`) that roadmap items cite as evidence. Newest first.
 - **Member tooling is universally weak** except Lea's dedicated portal. Most clubs have nothing beyond a mailto.
 - **Dated builds accumulate accessibility debt**: broken heading hierarchies (Wallingford, PCRC-current, Lea), unlabelled icon links (Nottingham), decorative characters read aloud (Nottingham).
 - **Big clubs are thin on juniors/LTR by design** (Thames), while community clubs lead with them (Leeds, Wallingford). PCRC's LTR + junior focus matches the community-club pattern.
+- **Online booking exists — but only outside the clubs.** A leisure trust books everything via Bookwhen/Gymflow (Enable Leisure) and one club routes LTR booking through British Rowing's justgo (Cambridge); no club has native booking. Off-the-shelf tools are the realistic path.
+- **Heading-hierarchy chaos is near-universal** on template builds (Tideway h1→h4, Cambridge h4/h5/h6, Marlow multiple h1s) — reinforces that PCRC-new's semantic HTML is a durable accessibility edge.
+- **Live water/status data is embeddable.** Walton embeds Thames Conditions/GaugeMap with a plain-English threshold; Marlow runs a status banner site-wide. Lake status can be automated, not hand-updated.
 
 ## Best in class, by criterion
 
 | Criterion | Best | Why |
 | --- | --- | --- |
 | First impression | Thames | Full-bleed photography, clean nav |
-| Joining journey | Leeds | Audience-split cards + embedded waiting-list form |
-| Learn-to-row path | Leeds | Numbered 4-step course structure with honest wait times |
-| Juniors & parents | Wallingford | Achievement-led junior marketing |
+| Joining journey | Tideway Scullers | Numbered process, per-squad application forms, monthly+annual pricing |
+| Learn-to-row path | Enable Leisure | Complete bookable ladder taster→membership (best club-based: Leeds, Marlow) |
+| Juniors & parents | Marlow | Largest junior squad, tiered evidence, alumni/parents section |
 | Content depth | Wallingford | Fresh monthly news, detailed squad copy |
 | Events & results | Thames | Events as standalone commercial subsite |
 | Mobile | Leeds / Thames | Squarespace responsive builds |
@@ -31,7 +34,7 @@ ID (`F-xx`) that roadmap items cite as evidence. Newest first.
 | Design & branding | Thames | Premium photography-led identity |
 | Contact & enquiries | Leeds | Embedded forms + prefilled mailtos |
 | Member tools | Lea | Dedicated members portal |
-| Standouts | Leeds | Cox recruitment, waiting-list management |
+| Standouts | Leeds / Marlow | Cox recruitment + waiting lists; adaptive rowing, free learn-to-cox, venue hire |
 
 ## Findings
 
@@ -53,3 +56,18 @@ ID (`F-xx`) that roadmap items cite as evidence. Newest first.
 - **F-16 · 2026-08-14 · Separate members portal** — Public site stays simple; members get real tools (join, event sign-up, directory). *Lea.* → R-14
 - **F-17 · 2026-08-14 · Photographer credits in footer** — Cheap goodwill with club photographers. *Lea.* → R-13
 - **F-18 · 2026-08-14 · Recruitment posts with salary bands** — Signals a professional, funded organisation. *Lea.* → R-13
+- **F-19 · 2026-08-14 · Per-squad application forms** — Route each application to the right squad's form rather than one generic enquiry. *Tideway Scullers.* → R-09
+- **F-20 · 2026-08-14 · Numbered joining process** — State the steps (apply → review → membership form) so applicants know what happens next. *Tideway Scullers.* → R-09
+- **F-21 · 2026-08-14 · Publish ancillary fees** — Racking/boat-storage prices alongside membership, not hidden. *Tideway Scullers.* → R-09
+- **F-22 · 2026-08-14 · Book LTR via British Rowing justgo/ClubHub** — NGB handles payments/bookings; no custom backend. *City of Cambridge.* → R-14
+- **F-23 · 2026-08-14 · Embed the club Instagram feed** — Homepage freshness without editorial effort. *City of Cambridge.* → R-15
+- **F-24 · 2026-08-14 · Partner-route for casual LTR demand** — Signpost commercial taster providers; keep the club course focused on joiners. *City of Cambridge.* → R-10
+- **F-25 · 2026-08-14 · Third-party booking systems (Bookwhen/Gymflow)** — Off-the-shelf course booking with payments. *Enable Leisure.* → R-14
+- **F-26 · 2026-08-14 · Product ladder from taster to membership** — A clear next step at every level. *Enable Leisure.* → R-10
+- **F-27 · 2026-08-14 · School-partnership offer** — Termly/yearly school rowing packages alongside public courses. *Enable Leisure.* → R-16
+- **F-28 · 2026-08-14 · Live water-conditions embed** — Automated status with a plain-English threshold. *Walton.* → R-11
+- **F-29 · 2026-08-14 · FAQ-style join page** — Answer cost/age/commitment/safety inline where people look. *Walton.* → R-09
+- **F-30 · 2026-08-14 · Adaptive/para-rowing programme visibility** — A named inclusive programme beats token accessibility statements. *Marlow.* → R-17
+- **F-31 · 2026-08-14 · Free learn-to-cox course** — Removes the pay barrier for the scarcest role. *Marlow.* → R-09
+- **F-32 · 2026-08-14 · Status banner on every page** — Traffic-light water/safety status with zero clicks. *Marlow.* → R-11
+- **F-33 · 2026-08-14 · Alumni/parents section** — Lightweight engagement home for leavers' families and past members. *Marlow.* → R-18

@@ -20,7 +20,6 @@ here with a stable ID (`R-xx`) so decisions, reviews and commits can reference i
 
 | ID | Item | Notes |
 | --- | --- | --- |
-| R-01 | Competitor review of other rowing-club websites | Method, criteria and rubric in [`reviews/README.md`](reviews/README.md). Output: `matrix.csv` + one note per club + `findings.md`. Each actionable finding becomes a new roadmap item citing its finding ID. |
 | R-02 | Capture and prioritise the site owner's improvement ideas | Owner has ideas not yet recorded anywhere. Add as new `R-xx` items, agree Now/Next/Later placement. |
 
 ## Next
@@ -38,9 +37,20 @@ here with a stable ID (`R-xx`) so decisions, reviews and commits can reference i
 | --- | --- | --- |
 | R-07 | Results Phase 2: unified results archive | Normalise results from rowresults.co.uk, regatta.time-team.nl and raceleader.co.uk into one searchable archive (event → race → crew → time). Needs a data model, per-source adapters, caching vs build-time decisions. Deliberately deferred — see decision D-04 in `decisions.md`. |
 | R-08 | Per-event pages for hosted regattas | The IA keeps this door open ("per-event pages later if needed") once more than one hosted event needs draw/schedule/results detail. |
+| R-09 | Joining-journey upgrades | Evidence: F-01, F-02, F-05, F-12, F-15, F-19, F-20, F-21, F-29, F-31. Candidates: audience-split cards; numbered joining process; per-squad enquiry routing; pricing-card fees with monthly+annual; capacity signalling on full categories; publish ancillary fees (racking); FAQ block (cost/age/commitment/safety); explicit cox recruitment incl. free learn-to-cox idea. |
+| R-10 | Learn-to-row funnel improvements | Evidence: F-03, F-06, F-11, F-13, F-14, F-24, F-26. Candidates: numbered course structure; waiting-list capture with honest wait times; capacity messaging; product ladder (taster → course → squad); signpost commercial taster partners for casual demand; honest scope statements. |
+| R-11 | Lake-status automation | Evidence: F-04, F-28, F-32. Candidates: status page/banner fed by live data (EA gauges / sensor) with plain-English thresholds rather than manual updates. |
+| R-12 | Commercial-arm separation review | Evidence: F-07, F-08, F-10. Decide whether lake hire / hosted events warrant a subsite or dedicated landing pages (visiting-crew info, parking, course map). |
+| R-13 | Fundraising & goodwill features | Evidence: F-09, F-17, F-18. Candidates: donate link in nav (if charity status confirmed); photographer credits; recruitment posts with salary bands. |
+| R-14 | Online booking & member tools | Evidence: F-16, F-22, F-25. Evaluate off-the-shelf options: British Rowing justgo/ClubHub for course booking; Bookwhen/Gymflow-style booking; whether a members portal is ever warranted. Depends on R-04. |
+| R-15 | Instagram feed on homepage | Evidence: F-23. Embed social feed for freshness without editorial effort; check privacy/perf trade-offs. |
+| R-16 | School-partnership offer page | Evidence: F-27. Market termly/yearly school rowing packages alongside public courses (leverages the lake). |
+| R-17 | Adaptive/para-rowing visibility | Evidence: F-30. If PCRC runs (or could run) adaptive rowing, name the programme explicitly rather than a token accessibility mention. |
+| R-18 | Alumni & parents section | Evidence: F-33. Lightweight engagement home for junior leavers' families and past members. |
 
 ## Done
 
 | ID | Item | Shipped | Notes |
 | --- | --- | --- | --- |
 | R-00 | Initial site build (16 URLs from 34 WordPress pages) | Aug 2026 | IA, content, components, data files, redirects, news collection. See `information-architecture.md`. |
+| R-01 | Competitor review of other rowing-club websites | Aug 2026 | 12 sites reviewed (7 clubs + PCRC current/new in batch 1; Tideway Scullers, City of Cambridge, Enable Leisure, Walton, Marlow in batch 2). Output: `matrix.csv`, one note per club in `reviews/clubs/`, `findings.md` F-01–F-33, roadmap items R-09–R-18. |
