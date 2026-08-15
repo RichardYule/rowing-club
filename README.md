@@ -18,6 +18,19 @@ Planned improvements and their progress are tracked in
 rowing clubs' websites lives in [`docs/reviews/`](docs/reviews/README.md) —
 its findings (`F-xx`) feed new roadmap items.
 
+## Current state (Aug 2026)
+
+- **Demo deployment** at <https://rowing-club.cloudflare-svc-763.workers.dev/> —
+  not yet live on the real domain.
+- **Deliberately de-indexed** from search engines while it's a demo
+  (`SITE.indexable = false` in `src/consts.ts` + an `X-Robots-Tag` header —
+  decision D-09).
+- **All email addresses use the `riuy.com` test domain** until launch (D-06).
+- **Site constants confirmed** with the owner (R-03): founded 1948, no public
+  phone number, real socials (Instagram, members-only Facebook group,
+  Twitter/X `@P_C_R_C`).
+- **To go live:** follow the checklist in roadmap item R-19.
+
 ## Commands
 
 | Command | Action |
@@ -46,9 +59,9 @@ everything can be done in the GitHub web interface. **Step-by-step guide:
 │   ├── decisions.md        # Decision log (D-xx)
 │   └── reviews/            # Competitor-site reviews (matrix.csv, findings F-xx)
 ├── public/                 # Static assets served as-is
-│   ├── _headers            # Cloudflare cache rules (immutable /_astro assets)
+│   ├── _headers            # Cloudflare cache rules + noindex while demo (D-09)
 │   ├── _redirects          # 301s from the old WordPress URLs
-│   ├── robots.txt          # Allows crawlers, points to the sitemap
+│   ├── robots.txt          # Allows crawlers; sitemap line returns at launch (D-09)
 │   └── images/             # og-image + news/ (post photos) + sponsors/ (logos)
 └── src/
     ├── consts.ts           # Single source of truth: club name, contacts, nav links
@@ -72,8 +85,8 @@ everything can be done in the GitHub web interface. **Step-by-step guide:
 ## Customising
 
 - **Club details** (name, contacts, address, socials): edit `src/consts.ts`.
-  Items marked `TODO` (email, phone, founding year, social handles) need
-  confirming with the committee.
+  All values were confirmed with the owner in Aug 2026 (R-03); the email
+  addresses intentionally use the `riuy.com` test domain until launch (D-06).
 - **Colours & fonts**: edit the `@theme` block in `src/styles/global.css`
   (the `royal`/`gold` scales are the club colours — see `docs/brand-kit.md`).
 - **Events / fees / sponsors / volunteer roles**: edit the typed data in `src/data/`.

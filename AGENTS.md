@@ -16,9 +16,18 @@ Improvement work is tracked in-repo:
 - `docs/decisions.md` — decision log (`D-xx`).
 - `docs/reviews/` — competitor-site research; findings (`F-xx`) feed roadmap items.
 
-At the start of a session, check the roadmap for current priorities. When work
-finishes, move its roadmap item to Done (with date/commit); when a significant
-decision is made, log it in `docs/decisions.md`.
+At the start of a session, orient yourself from the repo rather than asking
+the user to re-explain:
+
+1. Read the **Current state** section of `README.md` — where the project
+   stands (demo deployment, de-indexed, test emails).
+2. Check the **Now** column of `docs/roadmap.md` for current priorities.
+3. Skim recent entries in `docs/decisions.md` before touching anything they
+   cover — several carry "before launch" instructions (e.g. D-06, D-09) that
+   must not be undone accidentally.
+
+When work finishes, move its roadmap item to Done (with date/commit); when a
+significant decision is made, log it in `docs/decisions.md`.
 
 ## Documentation
 
