@@ -37,7 +37,8 @@ const jsonLd = {
   description: SITE.description,
   url: SITE.url,
   email: SITE.email,
-  telephone: SITE.phone,
+  // No public phone number (decision, Aug 2026) — omit rather than emit null.
+  ...(SITE.phone ? { telephone: SITE.phone } : {}),
   foundingDate: String(SITE.founded),
   sport: 'Rowing',
   address: {
@@ -47,6 +48,7 @@ const jsonLd = {
     postalCode: SITE.address.postcode,
     addressCountry: SITE.address.country,
   },
+  sameAs: [SITE.social.instagram, SITE.social.facebook, SITE.social.twitter],
 };
 ---
 
@@ -64,8 +66,9 @@ const jsonLd = {
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={imageURL} />
 
-<!-- Twitter / X card -->
+<!-- Twitter / X card (handle matches SITE.social.twitter) -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@P_C_R_C" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageURL} />

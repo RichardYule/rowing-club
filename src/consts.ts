@@ -13,11 +13,12 @@ export const SITE = {
     'lake at Thorpe Meadows. Learn-to-row courses, junior and senior squads, and two home regattas a year.',
   url: 'https://peterboroughcityrowing.co.uk',
   locale: 'en_GB',
-  // TODO: confirm the public enquiry inbox before launch
+  // Confirmed Aug 2026 (R-03): real inbox, but MUST be replaced with a
+  // club-owned address before this site goes live.
   email: 'enquiries@riuy.com',
-  // TODO: add a public phone number if the club wants one published
+  // Decision (Aug 2026, R-03): no public phone number — email only.
   phone: null as string | null,
-  // TODO: confirm the founding year with the club historian
+  // Confirmed with the club, Aug 2026 (R-03).
   founded: 1948,
   address: {
     street: 'The Boathouse, Thorpe Meadows',
@@ -26,10 +27,12 @@ export const SITE = {
     country: 'United Kingdom',
   },
   social: {
-    // TODO: confirm the club's real social handles
-    instagram: 'https://instagram.com/peterboroughcityrc',
-    facebook: 'https://facebook.com/peterboroughcityrowingclub',
-    strava: 'https://strava.com/clubs/peterboroughcityrc',
+    // Confirmed Aug 2026 (R-03). Twitter/X is the club's main public channel
+    // (regatta results and announcements); the Facebook group is members-only;
+    // there is no Strava club.
+    instagram: 'https://www.instagram.com/peterborough_city_rowing_club/',
+    facebook: 'https://www.facebook.com/groups/79453943226/',
+    twitter: 'https://twitter.com/P_C_R_C',
   },
 } as const;
 

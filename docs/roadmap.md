@@ -26,7 +26,6 @@ here with a stable ID (`R-xx`) so decisions, reviews and commits can reference i
 
 | ID | Item | Notes |
 | --- | --- | --- |
-| R-03 | Confirm `consts.ts` TODOs with the committee | Public enquiry inbox, public phone number (or not), founding year (currently 1948, unconfirmed), real social handles. See `src/consts.ts`. |
 | R-04 | Enquiry form backend: Cloudflare Pages Function + Turnstile | Replace the `mailto:` fallback with a Pages Function (e.g. `/api/enquiry`) and Cloudflare Turnstile anti-spam. See the comment in `src/components/EnquiryForm.astro`. Needs an email-sending service (e.g. Resend/Mailgun) or Cloudflare Email Workers decision. |
 | R-05 | Migrate remaining old WordPress news posts | 128 posts existed on the old site; only 2 migrated so far. Migrate a curated selection (recent + significant); leave the rest archived. |
 | R-06 | `llms.txt` + AI-scraper policy decision | Decide whether to publish `llms.txt` for AI answer engines and whether to allow/block AI training scrapers via `robots.txt` / Cloudflare bot rules. See the "Non-human users" section of `information-architecture.md`. |
@@ -43,7 +42,7 @@ here with a stable ID (`R-xx`) so decisions, reviews and commits can reference i
 | R-12 | Commercial-arm separation review | Evidence: F-07, F-08, F-10. Decide whether lake hire / hosted events warrant a subsite or dedicated landing pages (visiting-crew info, parking, course map). |
 | R-13 | Fundraising & goodwill features | Evidence: F-09, F-17, F-18. Candidates: donate link in nav (if charity status confirmed); photographer credits; recruitment posts with salary bands. |
 | R-14 | Online booking & member tools | Evidence: F-16, F-22, F-25. Evaluate off-the-shelf options: British Rowing justgo/ClubHub for course booking; Bookwhen/Gymflow-style booking; whether a members portal is ever warranted. Depends on R-04. |
-| R-15 | Instagram feed on homepage | Evidence: F-23. Embed social feed for freshness without editorial effort; check privacy/perf trade-offs. |
+| R-15 | Social feeds on homepage | Evidence: F-23. Embed Instagram and/or Twitter/X for freshness without editorial effort. Owner confirmed (R-03, Aug 2026): Twitter/X (@P_C_R_C) is the club's main public channel — regatta results and announcements — and Instagram the most visible; both are candidates. Check privacy/perf trade-offs. |
 | R-16 | School-partnership offer page | Evidence: F-27. Market termly/yearly school rowing packages alongside public courses (leverages the lake). |
 | R-17 | Adaptive/para-rowing visibility | Evidence: F-30. If PCRC runs (or could run) adaptive rowing, name the programme explicitly rather than a token accessibility mention. |
 | R-18 | Alumni & parents section | Evidence: F-33. Lightweight engagement home for junior leavers' families and past members. |
@@ -54,3 +53,4 @@ here with a stable ID (`R-xx`) so decisions, reviews and commits can reference i
 | --- | --- | --- | --- |
 | R-00 | Initial site build (16 URLs from 34 WordPress pages) | Aug 2026 | IA, content, components, data files, redirects, news collection. See `information-architecture.md`. |
 | R-01 | Competitor review of other rowing-club websites | Aug 2026 | 12 sites reviewed (7 clubs + PCRC current/new in batch 1; Tideway Scullers, City of Cambridge, Enable Leisure, Walton, Marlow in batch 2). Output: `matrix.csv`, one note per club in `reviews/clubs/`, `findings.md` F-01–F-33, roadmap items R-09–R-18. |
+| R-03 | Confirm `consts.ts` TODOs with the committee | Aug 2026 | Confirmed with owner: email `enquiries@riuy.com` is real but must change before go-live; no public phone (email only); founded 1948 confirmed; socials are Instagram (`peterborough_city_rowing_club`), Facebook members-only group, Twitter/X (`@P_C_R_C`) — no Strava. Footer + SEO updated accordingly. |
