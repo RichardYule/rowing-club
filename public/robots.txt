@@ -1,4 +1,8 @@
+# Demo deployment (decision D-09): crawling stays allowed so crawlers can
+# fetch pages and see the noindex signals (meta robots + X-Robots-Tag header)
+# that keep the site unlisted. Blocking crawling here would hide those
+# signals and could still leave URLs indexed as bare links.
+# Re-add the Sitemap line at go-live (roadmap R-19):
+# Sitemap: https://peterboroughcityrowing.co.uk/sitemap-index.xml
 User-agent: *
 Allow: /
-
-Sitemap: https://peterboroughcityrowing.co.uk/sitemap-index.xml

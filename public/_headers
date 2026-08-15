@@ -1,4 +1,10 @@
 # Cloudflare Pages headers.
+
+# Demo deployment (decision D-09): keep every response out of search-engine
+# indexes until launch. Remove this block at go-live (roadmap R-19).
+/*
+  X-Robots-Tag: noindex, nofollow
+
 # Hashed assets emitted by Astro into /_astro never change between
 # deploys, so they can be cached immutably for a year.
 /_astro/*

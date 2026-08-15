@@ -6,6 +6,10 @@
  * - Canonical URL derived from Astro.site + current path
  * - Open Graph + Twitter Card tags
  * - JSON-LD structured data (SportsClub schema) for rich results
+ *
+ * While the site is a demo, SITE.indexable is false and every page ships
+ * noindex (decision D-09). Pages can still opt out individually via the
+ * index prop (e.g. 404).
  */
 import { SITE } from '../consts';
 
@@ -22,7 +26,7 @@ const {
   title,
   description = SITE.description,
   image = '/images/og-image.svg',
-  index = true,
+  index = SITE.indexable,
 } = Astro.props;
 
 const pageTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;

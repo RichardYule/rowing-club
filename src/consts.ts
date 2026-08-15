@@ -13,6 +13,9 @@ export const SITE = {
     'lake at Thorpe Meadows. Learn-to-row courses, junior and senior squads, and two home regattas a year.',
   url: 'https://peterboroughcityrowing.co.uk',
   locale: 'en_GB',
+  // Demo deployment: keep the site out of search-engine indexes until launch
+  // (decision D-09). Flip to true at go-live — see roadmap R-19.
+  indexable: false,
   // Confirmed Aug 2026 (R-03): real inbox, but MUST be replaced with a
   // club-owned address before this site goes live.
   email: 'enquiries@riuy.com',

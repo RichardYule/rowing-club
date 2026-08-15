@@ -8,6 +8,18 @@ Format: **D-xx · date · decision** — context, consequences.
 
 ---
 
+- **D-09 · 2026-08-15 · Demo deployment is deliberately de-indexed until launch.**
+  The site has strong SEO by design, but the public `workers.dev` demo URL must
+  not appear in search results while the site is a demo (the URL is even linked
+  from this public repo). All responses carry `X-Robots-Tag: noindex, nofollow`
+  (`public/_headers`) and every page emits a meta robots noindex, driven by a
+  single switch: `SITE.indexable` in `src/consts.ts`. `robots.txt` deliberately
+  stays crawlable (`Allow: /`) so crawlers can fetch pages and see those
+  signals — blocking crawling would hide the noindex and could still leave URLs
+  indexed as bare links. The Sitemap line is removed until launch. **Before
+  launch:** set `SITE.indexable = true`, remove the `_headers` block, restore
+  the Sitemap line (roadmap R-19).
+
 - **D-08 · 2026-08-14 · Improvement work is tracked in-repo (`docs/roadmap.md`), not GitHub Issues.**
   The site owner wanted a way to record planned improvements and progress.
   Chose in-repo Markdown docs over GitHub Issues/Projects: versioned with the
